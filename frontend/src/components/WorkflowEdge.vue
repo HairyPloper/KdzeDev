@@ -1,10 +1,11 @@
 <script setup>
-import { computed, ref, nextTick, watch } from 'vue'
+import { computed, ref, nextTick, watch, useId } from 'vue'
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, getSmoothStepPath, MarkerType } from '@vue-flow/core'
 import { useVueFlow } from '@vue-flow/core'
 import RichTooltip from './RichTooltip.vue'
 import { getEdgeHelp } from '../utils/helpContent.js'
 import { configStore } from '../utils/configStore.js'
+import { getEdgeColor } from '../utils/colorUtils.js'
 import { useI18n } from 'vue-i18n'
 
 const { findNode } = useVueFlow()
@@ -79,30 +80,36 @@ const hoverState = computed(() => {
   }
 })
 
-const edgeMarkerEnd = computed(() => {
-  const base = (typeof props.markerEnd === 'object' && props.markerEnd !== null)
-    ? { type: MarkerType.Arrow, width: 18, height: 18, color: '#f2f2f2', strokeWidth: 2, ...props.markerEnd }
-    : props.markerEnd
+const sourceColor = computed(() => {
+  const sourceNode = findNode(props.source)
+  return getEdgeColor(sourceNode?.type === 'start-node' ? 'start' : sourceNode?.data?.type)
+})
 
+// BaseEdge expects an SVG marker URL, not a marker configuration object.
+// Own the marker so its color updates alongside the path, including on hover.
+const markerId = `workflow-arrow-${useId()}`
+const edgeMarkerEnd = `url(#${markerId})`
+const markerColor = computed(() => {
   const { isEntry, isExit } = hoverState.value
 
   if (isEntry) {
     // warm orange marker for incoming (entry) edges
-    return { ...(typeof base === 'object' ? base : {}), color: '#ff8a00' }
+    return '#ff8a00'
   }
   if (isExit) {
     // cyan-turquoise marker for outgoing (exit) edges
-    return { ...(typeof base === 'object' ? base : {}), color: '#00b8d8' }
+    return '#00b8d8'
   }
 
-  return base
+  return sourceColor.value
 })
 
 const edgeStyle = computed(() => {
   const baseStyle = {
-    stroke: '#f2f2f2',
     strokeWidth: 1.2,
     ...props.style,
+    stroke: sourceColor.value,
+    ...(props.data?.trigger === false ? { strokeDasharray: '5, 5', animation: 'none' } : {}),
   }
 
   const { isEntry, isExit } = hoverState.value
@@ -124,15 +131,6 @@ const edgeStyle = computed(() => {
       stroke: 'url(#outgoingEdgeGradient)',
       strokeWidth: 1.4,
       transition: 'stroke 120ms ease, stroke-width 120ms ease',
-    }
-  }
-
-  if (props.data?.trigger === false) {
-    return {
-      ...baseStyle,
-      stroke: '#868686',
-      strokeDasharray: '5, 5',
-      animation: 'none',
     }
   }
 
@@ -611,6 +609,11 @@ const shouldShowTooltip = computed(() => configStore.ENABLE_HELP_TOOLTIPS)
   <!-- Invisible SVG defs to provide gradients for edge strokes -->
   <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
     <defs>
+      <marker :id="markerId" viewBox="-10 -10 20 20" refX="0" refY="0"
+        markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto-start-reverse">
+        <polyline points="-5,-4 0,0 -5,4" fill="none" :stroke="markerColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </marker>
       <linearGradient id="incomingEdgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#FFD97A" />
         <stop offset="60%" stop-color="#FFB84D" />

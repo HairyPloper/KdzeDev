@@ -32,7 +32,7 @@ model settings in `.env`; the example defaults use `gpt-4o`:
 | Koki | Plan the simplest backend or operational setup |
 | Pepi | Outline frontend, UI/UX, and customer touchpoints |
 | Šomi | Clarify the offer and identify language needs |
-| Ceki | Define QA checks for the pilot |
+| Ceki | Review pilot plans, define QA checks, and request targeted revisions |
 | Pijeki | Estimate costs and revenue |
 | Dinča | Challenge assumptions and identify risks |
 | Dado | Review legal questions and requirements for each pilot |
@@ -41,9 +41,15 @@ model settings in `.env`; the example defaults use `gpt-4o`:
 The disconnected `gospodarice` node is a playful wives' club cameo. It is
 outside the working team's sequence and stays inactive during normal runs.
 
-At launch, describe your skills, interests, location, time, and budget.
-The team passes its findings along in the order above. Its recommendations are
-hypotheses to test with real customers; this workflow has no web research tools configured.
+At launch, describe the real founders, their skills and interests, location,
+available time, resources, shared test budget, and currency. A bare command such
+as `start` is rejected because it would force the team to invent its constraints.
+The team passes findings forward in the order above. Ceki's QA gate can return
+one targeted revision through Koki, Pepi, and Šomi; then the workflow continues.
+Pijeki, Dinča, and Dado give advisory cost, risk, and legal reviews without
+restarting the graph. A normal run makes 13 model calls, or 17 if the QA return
+is used, excluding provider retries. Recommendations remain hypotheses to test
+with real customers; this workflow has no web research tools configured.
 
 Edit the team in the UI or in
 [yaml_instance/Kdze_new_business_idea.yaml](yaml_instance/Kdze_new_business_idea.yaml).
@@ -51,6 +57,7 @@ Edit the team in the UI or in
 ## Guides
 
 - The **Tutorial** page in the app explains nodes, connections, and launching.
+- **Export Chat / PDF** in Launch opens the full expanded conversation for printing or saving as PDF.
 - [English reference](docs/user_guide/en/index.md) covers the editor and runtime.
 
 ## License

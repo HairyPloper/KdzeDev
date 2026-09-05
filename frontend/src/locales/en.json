@@ -125,6 +125,8 @@
     "relaunch": "Relaunch"
   },
   "launch": {
+    "export_chat": "Export Chat / PDF",
+    "export_popup_blocked": "Allow pop-ups for this site, then click Export Chat / PDF again.",
     "title": "Launch",
     "collapse_chat": "Collapse chat",
     "expand_chat": "Expand chat",
@@ -173,6 +175,7 @@
     "alert_ws_error": "WebSocket connection error!",
     "alert_missing_session": "Missing session information from server.",
     "alert_enter_prompt": "Please enter task prompt or upload files.",
+    "alert_kdze_brief_required": "A command such as ‘start’ does not give the team enough real information. Enter a founder brief or attach one:",
     "alert_ws_not_ready": "WebSocket connection is not ready yet.",
     "alert_failed_launch": "Failed to launch workflow",
     "unknown_error": "Unknown error",

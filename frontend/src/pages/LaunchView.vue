@@ -196,7 +196,7 @@
                   v-model="taskPrompt"
                   class="task-input"
                   :disabled="!isConnectionReady || (isWorkflowRunning && status !== 'Waiting for input...')"
-                  :placeholder="$t('launch.enter_prompt')"
+                  :placeholder="taskPromptPlaceholder"
                   ref="taskInputRef"
                   @keydown.enter="handleEnterKey"
                   @paste="handlePaste"
@@ -456,6 +456,14 @@
 
             <button
               class="download-button"
+              :disabled="chatMessages.length === 0"
+              @click="exportChat"
+            >
+              {{ $t('launch.export_chat') }}
+            </button>
+
+            <button
+              class="download-button"
               :disabled="status !== 'Completed' && status !== 'Cancelled'"
               @click="downloadLogs"
             >
@@ -524,6 +532,12 @@ import WorkflowNode from '../components/WorkflowNode.vue'
 import WorkflowEdge from '../components/WorkflowEdge.vue'
 import StartNode from '../components/StartNode.vue'
 import CollapsibleMessage from '../components/CollapsibleMessage.vue'
+import { openChatExport } from '../utils/chatExport.js'
+import {
+  KDZE_BRIEF_TEMPLATE,
+  isKdzeBusinessWorkflow,
+  needsKdzeBusinessBrief
+} from '../utils/kdzeBusinessBrief.js'
 
 const router = useRouter()
 const route = useRoute()
@@ -557,6 +571,11 @@ const taskPrompt = ref('')
 // File selector state
 const workflowFiles = ref([])
 const selectedFile = ref('')
+const taskPromptPlaceholder = computed(() =>
+  isKdzeBusinessWorkflow(selectedFile.value)
+    ? KDZE_BRIEF_TEMPLATE
+    : t('launch.enter_prompt')
+)
 const fileSearchQuery = ref('')
 const isFileSearchDirty = ref(false)
 const isFileDropdownOpen = ref(false)
@@ -1647,41 +1666,51 @@ const syncNodeAndEdgeData = () => {
     const yamlNodes = workflowYaml.value?.graph?.nodes || []
     const yamlEdges = workflowYaml.value?.graph?.edges || []
 
-    const yamlNodeById = new Map(
-      Array.isArray(yamlNodes) ? yamlNodes.map(node => [node.id, node]) : []
-    )
-    const yamlEdgeByKey = new Map(
-      Array.isArray(yamlEdges)
-        ? yamlEdges.map(edge => [`${edge.from}-${edge.to}`, edge])
-        : []
-    )
-
     setNodes(existingNodes => {
-      if (!Array.isArray(existingNodes)) {
-        return existingNodes
-      }
-      return existingNodes.map(node => {
-        const yamlNode = yamlNodeById.get(node.id)
-        if (yamlNode) {
-          return {
-            ...node,
-            data: yamlNode
-          }
-        }
-        return node
-      })
+      const current = Array.isArray(existingNodes) ? existingNodes : []
+      const existingById = new Map(current.map(node => [node.id, node]))
+      const visualStartNodes = current.filter(
+        node => node.id === '__start' || node.type === 'start-node'
+      )
+
+      return [
+        ...visualStartNodes,
+        ...yamlNodes.map((yamlNode, index) => ({
+          ...(existingById.get(yamlNode.id) || {
+            id: yamlNode.id,
+            type: 'workflow-node',
+            label: yamlNode.id,
+            position: {
+              x: 20 + (index % 5) * 200,
+              y: 10 + Math.floor(index / 5) * 150
+            }
+          }),
+          data: yamlNode
+        }))
+      ]
     })
 
     setEdges(existingEdges => {
-      if (!Array.isArray(existingEdges)) {
-        return existingEdges
-      }
-      return existingEdges.map(edge => {
-        const key = `${edge.source}-${edge.target}`
-        const yamlEdge = yamlEdgeByKey.get(key)
-        if (yamlEdge) {
+      const current = Array.isArray(existingEdges) ? existingEdges : []
+      const existingByKey = new Map(
+        current.map(edge => [`${edge.source}-${edge.target}`, edge])
+      )
+      const declaredStarts = new Set(workflowYaml.value?.graph?.start || [])
+      const visualStartEdges = current.filter(
+        edge => edge.source === '__start' && declaredStarts.has(edge.target)
+      )
+
+      return [
+        ...visualStartEdges,
+        ...yamlEdges.map(yamlEdge => {
+          const key = `${yamlEdge.from}-${yamlEdge.to}`
           return {
-            ...edge,
+            ...(existingByKey.get(key) || {
+              id: key,
+              source: yamlEdge.from,
+              target: yamlEdge.to,
+              type: 'workflow-edge'
+            }),
             data: yamlEdge,
             markerEnd: {
               type: MarkerType.Arrow,
@@ -1691,9 +1720,8 @@ const syncNodeAndEdgeData = () => {
               strokeWidth: 2,
             }
           }
-        }
-        return edge
-      })
+        })
+      ]
     })
   } catch (error) {
     console.error('Failed to sync graph data with YAML:', error)
@@ -1848,6 +1876,11 @@ const launchWorkflow = async () => {
 
   if (!trimmedPrompt && attachmentIds.length === 0) {
     alert(t('launch.alert_enter_prompt'))
+    return
+  }
+
+  if (needsKdzeBusinessBrief(selectedFile.value, trimmedPrompt, attachmentIds.length)) {
+    alert(`${t('launch.alert_kdze_brief_required')}\n\n${KDZE_BRIEF_TEMPLATE}`)
     return
   }
 
@@ -2365,6 +2398,16 @@ const cancelWorkflow = () => {
 }
 
 // Download logs
+const exportChat = () => {
+  const opened = openChatExport({
+    messages: chatMessages.value,
+    workflow: selectedFile.value,
+    sessionId: sessionIdToDownload || sessionId,
+    status: getTranslatedStatus(status.value)
+  })
+  if (!opened) alert(t('launch.export_popup_blocked'))
+}
+
 const downloadLogs = async () => {
   if (!sessionIdToDownload) {
     return

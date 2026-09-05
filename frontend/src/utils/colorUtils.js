@@ -1,3 +1,20 @@
+// Arrow colors depend only on the source node type, never on render order.
+const EDGE_COLORS = {
+    agent: '#b8bec7',
+    passthrough: '#228cd7',
+    human: '#fa6464',
+    python: '#86e67d',
+    subgraph: '#9a6fd7',
+    loop_counter: '#d8ba5f',
+    loop_timer: '#d8ba5f',
+    literal: '#f4b9df',
+    start: '#b6eee1',
+};
+
+export function getEdgeColor(nodeType) {
+    return EDGE_COLORS[nodeType] || EDGE_COLORS.agent;
+}
+
 /**
  * Simple hash function for strings
  */

@@ -10,6 +10,8 @@ The goal is to help a group of friends find a business idea for their planned co
 
 **Viki → Anton → Makarony → Toške → Pako → Koki → Pepi → Šomi → Ceki → Pijeki → Dinča → Dado → Miki**
 
+One automatic QA review gate sits after Ceki.
+
 Viki writes the founder brief. Anton finds problems. Makarony suggests ideas.
 Toške identifies customers. Pako checks feasibility. Koki plans the simplest
 technical setup. Pepi outlines the customer experience. Šomi clarifies the
@@ -17,13 +19,28 @@ offer and language needs. Ceki defines quality checks. Pijeki estimates costs.
 Dinča challenges assumptions. Dado flags legal questions for the pilots.
 Miki chooses a candidate and proposes a seven-day test that accounts for those questions.
 
+The QA gate can return one targeted revision:
+
+| Reviewer | Sends back to | Reason |
+| --- | --- | --- |
+| Ceki | Koki | Blocking planning issues; then Pepi and Šomi revise their parts |
+
+The QA chain allows **one return for the whole run**. READY continues immediately;
+a second non-ready result forwards the unresolved concerns. Pijeki, Dinča, and
+Dado then add cost, risk, and legal advice without sending work backward. The
+gate uses no model calls. The workflow uses 13 model calls normally or 17 with
+the revision, excluding provider retries. Planning readiness still requires
+real-world and legal checks.
+
 The separate **gospodarice** node is a fun wives' club cameo with encouragement
 and friendly teasing. It has no connections and is not a start node, so it
 does not run or use API credits during the team's normal workflow.
 
-At launch, describe your skills, interests, available time, location, and budget.
-Unknown details should stay marked as unknown. The team has no research tools
-configured, so treat customer demand and financial estimates as hypotheses.
+At launch, describe the real members and skills, interests, available hours,
+location and customer market, resources, shared test budget, and currency.
+Command-only prompts such as `start` are rejected; attach a brief or type these
+details. Unknowns stay unknown. The team has no research tools configured, so
+treat customer demand and financial estimates as hypotheses.
 
 ## 2. Create nodes
 
@@ -110,6 +127,13 @@ The pixel characters belong to the visualization and do not require model calls.
 Workflow files hold agent behavior; saved visual layouts are stored separately.
 
 ## 4. Saving and troubleshooting
+
+Use **Export Chat / PDF** in Launch to open a scrollable transcript with every
+message expanded, agent names, timestamps, and loaded images. Click
+**Print / Save as PDF** in that view, then choose **Save as PDF** in your browser.
+Long messages continue across pages without being truncated. The export is a
+snapshot of the chat currently loaded in the UI; an active run may be incomplete.
+The existing **Download Logs** button still downloads the raw execution files.
 
 Workflow definitions are saved in `yaml_instance/`. Visual layouts are stored in
 `data/vuegraphs.db`. Generated files are stored in `WareHouse/`.

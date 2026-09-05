@@ -1175,20 +1175,9 @@ const updateNodesAndEdgesFromYaml = (preserveExistingLayout = false) => {
       }
     }).filter(Boolean)
 
-    // Combine YAML edges with visual start edges (preserve any existing non-yaml edges)
-    const nextYamlEdgeIdSet = new Set(nextYamlEdges.map(edge => edge.id))
+    // YAML is the source of truth for workflow edges. Preserve only the visual
+    // Start edges generated from graph.start.
     edges.value = [
-      // keep any existing edges that are not YAML edges (e.g., visual-only) when preserving layout
-      // but always exclude previous Start edges so they are replaced by the newly computed ones
-      ...(preserveExistingLayout ? currentEdges.filter(e => {
-        const k = `${e.source}-${e.target}`
-        // drop if it's a YAML-defined edge or a previous Start edge
-        const isYamlEdge = nextYamlEdgeIdSet.has(k)
-        const isStartEdge = e.source === START_NODE_ID
-        // Also drop if it looks like a YAML edge (has data.from/to) but isn't in nextYamlEdges (stale)
-        const isStaleYamlEdge = e.data?.from && e.data?.to
-        return !isYamlEdge && !isStartEdge && !isStaleYamlEdge
-      }) : []),
       ...nextYamlEdges,
       ...startEdges
     ]
