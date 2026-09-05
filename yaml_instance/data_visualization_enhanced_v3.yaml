@@ -210,7 +210,7 @@ graph:
           **Strict Code Requirements:**
           - **Must** save the file as `<chart_id>_visualization.png` and `print` the file path. Verify its existence using `os.path.exists` after saving; raise an exception if it does not exist.
           - Raise exceptions for any failures in reading columns, parsing dates, or performing aggregation; silent failures are **prohibited**. When `big_data_strategy` or `meta.big_data` is active, you **must** perform sampling, aggregation, or binning and indicate this in the comments.
-          - Handle Chinese fonts and encoding properly. Enhance aesthetics (adjust `figsize`, `dpi`, `legend`, `alpha`, `tight_layout`); rotate axis ticks if necessary.
+          - Use English labels and handle fonts and Unicode encoding properly. Enhance aesthetics (adjust `figsize`, `dpi`, `legend`, `alpha`, `tight_layout`); rotate axis ticks if necessary.
           - Output only ```python ...``` blocks; use `install_python_packages` if libraries are missing.
         tooling:
           - type: function

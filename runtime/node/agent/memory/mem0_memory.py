@@ -189,7 +189,7 @@ class Mem0Memory(MemoryBase):
 
     @staticmethod
     def _clean_pipeline_text(text: str) -> str:
-        """Strip ChatDev pipeline headers so Mem0 sees clean conversational text.
+        """Strip KdzeDev pipeline headers so Mem0 sees clean conversational text.
 
         The executor wraps each input with '=== INPUT FROM <source> (<role>) ==='
         headers. Mem0's extraction LLM treats these as system metadata and skips

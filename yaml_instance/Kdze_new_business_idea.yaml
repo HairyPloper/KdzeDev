@@ -1,0 +1,28 @@
+graph:
+  id: Kdze_new_business_idea
+  description: Eight AI teammates help two friends explore business opportunities across any industry, choose one promising idea, and create a practical plan to test customer demand.
+  log_level: DEBUG
+  is_majority_voting: false
+  nodes: []
+  edges: []
+  memory: []
+  initial_instruction: |-
+    Help two friends find a promising business idea they would enjoy working on together. Consider any industry, including local services, physical products, and digital businesses.
+
+    Use the founders' skills, interests, budget, location, and available time from the launch brief. Clearly flag missing information and any assumptions.
+
+    Each teammate must complete only their assigned task, building on earlier findings. Keep ideas concrete: identify the customer, their problem, and an offer they might pay for.
+
+    Be creative but realistic. Do not invent market research, customer interviews, competitor facts, or evidence of demand. Label estimates and unverified claims.
+
+    Keep each teammate's response within 300 words. The final recommendation may use up to 500 words and must include:
+    - One recommended idea and one runner-up.
+    - Why the recommended idea fits the founders.
+    - The smallest offer they could test.
+    - Estimated startup costs and possible pricing.
+    - The biggest risks and unknowns.
+    - A seven-day demand test with clear success and stop criteria.
+
+    The goal is to select an idea worth testing, not claim that success is guaranteed.
+  start: []
+  end: []

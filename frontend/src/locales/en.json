@@ -28,9 +28,7 @@
     "auto_expand_messages": "Automatically expand messages",
     "auto_expand_messages_desc": "Automatically expand message content in the chat view.",
     "enable_help_tooltips": "Enable help tooltips",
-    "enable_help_tooltips_desc": "Show contextual help tooltips throughout the workflow interface.",
-    "language": "Language / 语言",
-    "language_desc": "Choose your preferred language."
+    "enable_help_tooltips_desc": "Show contextual help tooltips throughout the workflow interface."
   },
   "common": {
     "cancel": "Cancel",
@@ -52,14 +50,12 @@
     "copied": "Copied",
     "failed_to_copy": "Failed to copy code: ",
     "failed_to_fetch": "Failed to fetch tutorial markdown",
-    "failed_to_load": "Failed to load tutorial:",
-    "zh": "中文",
-    "en": "English"
+    "failed_to_load": "Failed to load tutorial:"
   },
   "home": {
-    "title": "ChatDev 2.0",
-    "highlight": "DevAll",
-    "introduction": "ChatDev 2.0 - DevAll is a zero-code multi-agent platform for developing everything, with a workspace built for designing, visualizing, and running agent workflows.",
+    "title": "KdzeDev",
+    "highlight": "Agent Workflows",
+    "introduction": "KdzeDev is a zero-code multi-agent platform for developing everything, with a workspace built for designing, visualizing, and running agent workflows.",
     "get_started": "Get Started →"
   },
   "workbench": {

@@ -1,6 +1,6 @@
-# DevAll Backend User Guide (English)
+# KdzeDev Backend User Guide (English)
 
-This landing page helps operators, workflow authors, and extension developers find the right documentation for DevAll backend components. Use the table below as your navigation map; drill into the linked chapters for full procedures and examples.
+This landing page helps operators, workflow authors, and extension developers find the right documentation for KdzeDev backend components. Use the table below as your navigation map; drill into the linked chapters for full procedures and examples.
 
 ## 1. Documentation Map
 
@@ -42,4 +42,4 @@ This landing page helps operators, workflow authors, and extension developers fi
 - **Memory Store / Attachment**: Stores define persistence backends; memory attachments describe how agent nodes read/write those stores across phases.
 - **Tooling**: Execution environment bound to agent nodes (Function or MCP implementations).
 
-If you spot gaps or outdated instructions, open an issue/PR or edit the docs directly (remember to keep Chinese and English versions in sync).
+If you spot gaps or outdated instructions, open an issue/PR or edit the docs directly.

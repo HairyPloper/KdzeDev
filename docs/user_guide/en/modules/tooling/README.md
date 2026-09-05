@@ -1,6 +1,6 @@
 # Tooling Module Overview
 
-DevAll currently exposes two tool binding modes for agent nodes:
+KdzeDev currently exposes two tool binding modes for agent nodes:
 1. **Function Tooling** – call in-repo Python functions from `functions/function_calling/`, with JSON Schema auto-generated from type hints.
 2. **MCP Tooling** – connect to external services that implement the Model Context Protocol, including FastMCP, Claude Desktop, or any MCP-compatible tool stack.
 
@@ -44,4 +44,4 @@ nodes:
 ## 4. Security Notes
 - Function Tooling runs inside the backend process, so keep functions least-privileged and avoid executing arbitrary shell commands without validation.
 - MCP Tooling now has explicit **remote (HTTP)** and **local (stdio)** modes. Remote only needs an existing server URL; Local launches your binary, so constrain the command/env vars and rely on `wait_for_log` + timeouts to detect readiness.
-- Tools that mutate attachments or `code_workspace/` should respect the lifecycle described in the [Attachment guide](../../attachments.md) (Chinese for now) to avoid leaking artifacts.
+- Tools that mutate attachments or `code_workspace/` should respect the lifecycle described in the [Attachment guide](../../attachments.md) to avoid leaking artifacts.

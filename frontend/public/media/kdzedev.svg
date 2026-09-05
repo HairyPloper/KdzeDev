@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" role="img" aria-labelledby="title">
+  <title id="title">KdzeDev</title>
+  <rect width="560" height="120" rx="20" fill="#151a26"/>
+  <path d="M32 30v60m42-60L35 60l39 30" fill="none" stroke="#99eaf9" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="108" y="79" fill="#e7f6ff" font-family="Arial, sans-serif" font-size="62" font-weight="700">KdzeDev</text>
+</svg>

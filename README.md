@@ -1,7 +1,9 @@
-# ChatDev 2.0 - DevAll
+# KdzeDev
+
+> Independently maintained fork of [ChatDev](https://github.com/OpenBMB/ChatDev). Upstream history, credits, published package names, and research citations retain their original names. Start here: [Docker, OpenAI setup, and repository guide](docs/SETUP.md).
 
 <p align="center">
-  <img src="frontend/public/media/logo.png" alt="DevAll Logo" width="500"/>
+  <img src="frontend/public/media/kdzedev.svg" alt="KdzeDev Logo" width="500"/>
 </p>
 
 
@@ -10,19 +12,16 @@
 </p>
 
 <p align="center">
-  【<a href="./README.md">English</a> | <a href="./README-zh.md">简体中文</a>】
-</p>
-<p align="center">
     【📚 <a href="#developers">Developers</a> | 👥 <a href="#primary-contributors">Contributors</a>｜⭐️ <a href="https://github.com/OpenBMB/ChatDev/tree/chatdev1.0">ChatDev 1.0 (Legacy)</a>】
 </p>
 
 ## 📖 Overview
-ChatDev has evolved from a specialized software development multi-agent system into a comprehensive multi-agent orchestration platform.
+KdzeDev is an independently maintained multi-agent orchestration platform based on the upstream project.
 
-- <a href="https://github.com/OpenBMB/ChatDev/tree/main">**ChatDev 2.0 (DevAll)**</a> is a **Zero-Code Multi-Agent Platform** for "Developing Everything". It empowers users to rapidly build and execute customized multi-agent systems through simple configuration. No coding is required—users can define agents, workflows, and tasks to orchestrate complex scenarios such as data visualization, 3D generation, and deep research.
+- <a href="https://github.com/HairyPloper/KdzeDev">**KdzeDev**</a> is a **Zero-Code Multi-Agent Platform** for "Developing Everything". It empowers users to rapidly build and execute customized multi-agent systems through simple configuration. No coding is required—users can define agents, workflows, and tasks to orchestrate complex scenarios such as data visualization, 3D generation, and deep research.
 - <a href="https://github.com/OpenBMB/ChatDev/tree/chatdev1.0">**ChatDev 1.0 (Legacy)**</a> operates as a **Virtual Software Company**. It utilizes various intelligent agents (e.g., CEO, CTO, Programmer) participating in specialized functional seminars to automate the entire software development life cycle—including designing, coding, testing, and documenting. It serves as the foundational paradigm for communicative agent collaboration.
 
-## 🎉 News
+## 🎉 Upstream News
 • **Jan 07, 2026: 🚀 We are excited to announce the official release of ChatDev 2.0 (DevAll)!** This version introduces a zero-code multi-agent orchestration platform. The classic ChatDev (v1.x) has been moved to the [`chatdev1.0`](https://github.com/OpenBMB/ChatDev/tree/chatdev1.0) branch for maintenance. More details about ChatDev 2.0 can be found on [our official post](https://x.com/OpenBMB/status/2008916790399701335).
 
 <details>
@@ -183,25 +182,25 @@ make dev
     Checks all YAML files for syntax and schema errors.
 
 ### 🦞 Run with OpenClaw
-OpenClaw can integrate with ChatDev by invoking existing agent teams or dynamically creating new agent teams within ChatDev.
+OpenClaw can integrate with KdzeDev by invoking existing agent teams or dynamically creating new agent teams within KdzeDev.
 To get started:
-1. Start the ChatDev 2.0 backend.
+1. Start the KdzeDev backend.
 2. Install the required skills for your OpenClaw instance:
     ```bash
     clawdhub install chatdev
     ```
 
-3. Ask your OpenClaw to create a ChatDev workflow. For example:
+3. Ask your OpenClaw to create a KdzeDev workflow. For example:
 
 * **Automated information collection and content publishing**
 
   ```
-  Create a ChatDev workflow to automatically collect trending information, generate a Xiaohongshu post, and publish it.
+  Create a KdzeDev workflow to automatically collect trending information, generate a Xiaohongshu post, and publish it.
   ```
 
 * **Multi-agent geopolitical simulation**
   ```
-  Create a ChatDev workflow with multiple agents to simulate possible future developments of the Middle East situation.
+  Create a KdzeDev workflow with multiple agents to simulate possible future developments of the Middle East situation.
   ```
 
 
@@ -222,7 +221,7 @@ Alternatively, you can run the entire application using Docker Compose. This met
     *   **Backend**: `http://localhost:6400`
     *   **Frontend**: `http://localhost:5173`
 
-> The services will automatically restart if they crash, and local file changes will be reflected inside the containers for live development.
+> The services restart automatically after a crash. Frontend edits hot reload; restart the backend after Python changes. See [the setup guide](docs/SETUP.md) for API credentials, persistence, and maintenance commands.
 
 ---
 
@@ -230,7 +229,7 @@ Alternatively, you can run the entire application using Docker Compose. This met
 
 ### 🖥️ Web Console
 
-The DevAll interface provides a seamless experience for both construction and execution
+The KdzeDev interface provides a seamless experience for both construction and execution
 
 *   **Tutorial**: Comprehensive step-by-step guides and documentation integrated directly into the platform to help you get started quickly.
 <img src="assets/tutorial-en.png"/> 
@@ -259,7 +258,7 @@ if result.final_message:
     print(f"Output: {result.final_message.text_content()}")
 ```
 
-**We have released the ChatDev Python SDK (PyPI package `chatdev`)**, so you can also run YAML workflow and multi-agent tasks directly in Python. For installation and version details, see [PyPI: chatdev 0.1.0](https://pypi.org/project/chatdev/0.1.0/).
+**The upstream project released the ChatDev Python SDK (PyPI package `chatdev`)**, so you can also run YAML workflow and multi-agent tasks directly in Python. For installation and version details, see [PyPI: chatdev 0.1.0](https://pypi.org/project/chatdev/0.1.0/).
 
 ---
 
@@ -268,7 +267,7 @@ if result.final_message:
 
 **For secondary development and extensions, please proceed with this section.**
 
-Extend DevAll with new nodes, providers, and tools.
+Extend KdzeDev with new nodes, providers, and tools.
 The project is organized into a modular structure:
 *   **Core Systems**: `server/` hosts the FastAPI backend, while `runtime/` manages agent abstraction and tool execution.
 *   **Orchestration**: `workflow/` handles the multi-agent logic, driven by configurations in `entity/`.
@@ -284,7 +283,7 @@ Relevant reference documentation:
 ## 🌟 Featured Workflows
 We provide robust, out-of-the-box templates for common scenarios. All runnable workflow configs are located in `yaml_instance/`.
 *   **Demos**: Files named `demo_*.yaml` showcase specific features or modules.
-*   **Implementations**: Files named directly (e.g., `ChatDev_v1.yaml`) are full in-house or recreated workflows. As follows:
+*   **Implementations**: Files named directly (e.g., `KdzeDev_v1.yaml`) are full in-house or recreated workflows. As follows:
 
 ### 📋 Workflow Collection
 
@@ -292,9 +291,8 @@ We provide robust, out-of-the-box templates for common scenarios. All runnable w
 | :--- |:------------------------------------------------------------------------------------------------------------| :--- | 
 | **📈 Data Visualization** | `data_visualization_basic.yaml`<br>`data_visualization_enhanced.yaml`                                       | <img src="assets/cases/data_analysis/data_analysis.gif" width="100%"><br>Prompt: *"Create 4–6 high-quality PNG charts for my large real-estate transactions dataset."* |
 | **🛠️ 3D Generation**<br>*(Requires [Blender](https://www.blender.org/) & [blender-mcp](https://github.com/ahujasid/blender-mcp))* | `blender_3d_builder_simple.yaml`<br>`blender_3d_builder_hub.yaml`<br>`blender_scientific_illustration.yaml` | <img src="assets/cases/3d_generation/3d.gif" width="100%"><br>Prompt: *"Please build a Christmas tree."* |
-| **🎮 Game Dev** | `GameDev_v1.yaml`<br>`ChatDev_v1.yaml`                                                                      | <img src="assets/cases/game_development/game.gif" width="100%"><br>Prompt: *"Please help me design and develop a Tank Battle game."* |
+| **🎮 Game Dev** | `GameDev_v1.yaml`<br>`KdzeDev_v1.yaml`                                                                      | <img src="assets/cases/game_development/game.gif" width="100%"><br>Prompt: *"Please help me design and develop a Tank Battle game."* |
 | **📚 Deep Research** | `deep_research_v1.yaml`                                                                                     | <img src="assets/cases/deep_research/deep_research.gif" width="85%"><br>Prompt: *"Research about recent advances in the field of LLM-based agent RL"* |
-| **🎓 Teach Video** | `teach_video.yaml` (Please run command `uv add manim` before running this workflow)                         | <img src="assets/cases/video_generation/video.gif" width="140%"><br>Prompt: *"讲一下什么是凸优化"* |
 
 ---
 
@@ -308,9 +306,9 @@ For those implementations, you can use the **Launch** tab to execute them.
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Whether you're fixing bugs, adding new workflow templates, or sharing high-quality cases/artifacts produced by DevAll, your help is much appreciated. Feel free to contribute by submitting **Issues** or **Pull Requests**.
+We welcome contributions from the community! Whether you're fixing bugs, adding new workflow templates, or sharing high-quality cases/artifacts produced by KdzeDev, your help is much appreciated. Feel free to contribute by submitting **Issues** or **Pull Requests**.
 
-By contributing to DevAll, you'll be recognized in our **Contributors** list below. Check out our [Developer Guide](#developers) to get started!
+By contributing to KdzeDev, you'll be recognized in our **Contributors** list below. Check out our [Developer Guide](#developers) to get started!
 
 ### 👥 Contributors
 
@@ -359,7 +357,7 @@ By contributing to DevAll, you'll be recognized in our **Contributors** list bel
 <a href="https://modelbest.cn/"><img src="assets/modelbest.png" height=50pt></a>&nbsp;&nbsp;
 <a href="https://github.com/OpenBMB/AgentVerse/"><img src="assets/agentverse.png" height=50pt></a>&nbsp;&nbsp;
 <a href="https://github.com/OpenBMB/RepoAgent"><img src="assets/repoagent.png"  height=50pt></a>
-<a href="https://app.commanddash.io/agent?github=https://github.com/OpenBMB/ChatDev"><img src="assets/CommandDash.png" height=50pt></a>
+<a href="https://app.commanddash.io/agent?github=https://github.com/HairyPloper/KdzeDev"><img src="assets/CommandDash.png" height=50pt></a>
 <a href="www.teachmaster.cn"><img src="assets/teachmaster.png" height=50pt></a>
 <a href="https://github.com/OpenBMB/AppCopilot"><img src="assets/appcopilot.png" height=50pt></a>
 

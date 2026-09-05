@@ -1,6 +1,6 @@
 # Workflow Authoring Guide
 
-This guide covers YAML structure, node types, provider configuration, edge conditions, and design template export so you can build and debug DevAll DAGs efficiently. Content mirrors `docs/user_guide/workflow_authoring.md` with English copy for global contributors.
+This guide covers YAML structure, node types, provider configuration, edge conditions, and design template export so you can build and debug KdzeDev DAGs efficiently. Content mirrors `docs/user_guide/workflow_authoring.md` with English copy for global contributors.
 
 ## 1. Prerequisites
 - Know the layout of `yaml_instance/` and `yaml_template/`.
@@ -8,7 +8,7 @@ This guide covers YAML structure, node types, provider configuration, edge condi
 - Review `FIELD_SPECS` (see [field_specs.md](field_specs.md)) and the Schema API contract ([config_schema_contract.md](config_schema_contract.md)) if you rely on dynamic forms in the frontend/IDE.
 
 ## 2. YAML Top-level Structure
-Every workflow file follows the `DesignConfig` root with only three keys: `version`, `vars`, and `graph`. The snippet below is adapted from `yaml_instance/net_example.yaml` and can run as-is:
+Every workflow file follows the `DesignConfig` root with only three keys: `version`, `vars`, and `graph`. The snippet below is adapted from `yaml_instance/net_example_en.yaml` and can run as-is:
 ```yaml
 version: 0.4.0
 vars:
@@ -154,7 +154,7 @@ The Gemini Provider supports multi-modal input (images/video/audio are automatic
   ```
 
 ## 6. Agent Node Advanced Features
-- **Tooling**: Configure `AgentConfig.tooling`; see the [Tooling module](modules/tooling/README.md) (Chinese for now).
+- **Tooling**: Configure `AgentConfig.tooling`; see the [Tooling module](modules/tooling/README.md).
 - **Thinking**: Enable staged reasoning via `AgentConfig.thinking` (e.g., chain-of-thought, reflection). Reference `entity/configs/thinking.py` for parameters.
 - **Memories**: Attach `MemoryAttachmentConfig` through `AgentConfig.memories`; details live in the [Memory module](modules/memory.md).
 

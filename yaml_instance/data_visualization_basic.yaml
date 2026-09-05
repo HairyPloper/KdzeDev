@@ -123,7 +123,7 @@ graph:
           2.  **Strict Silence**: Although you have a high degree of autonomy, you are **forbidden** from outputting natural language. All your thoughts and decisions must be reflected in code comments or direct code implementation.
 
           **[Code Quality Standards]**
-          *   **Must** resolve Chinese character display issues (garbled text) if the data contains Chinese, or force the use of English labels.
+          *   **Must** use readable English labels and handle Unicode input without garbled text.
           *   **Must** optimize aesthetics: adjust figsize, dpi, font size, and transparency (alpha).
           *   **Save and Output**: Save the file as `*_visualization.png` and print the filename.
 

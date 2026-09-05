@@ -1,6 +1,6 @@
 # Memory Module Guide
 
-This document explains DevAll's memory system: memory list config, built-in store implementations, how agent nodes attach memories, and troubleshooting tips. Core code lives in `entity/configs/memory.py` and `node/agent/memory/*.py`.
+This document explains KdzeDev's memory system: memory list config, built-in store implementations, how agent nodes attach memories, and troubleshooting tips. Core code lives in `entity/configs/memory.py` and `node/agent/memory/*.py`.
 
 ## 1. Architecture
 1. **Memory Store** – Declared under `memory[]` in YAML with `name`, `type`, and `config`. Types are registered via `register_memory_store()` and point to concrete implementations.

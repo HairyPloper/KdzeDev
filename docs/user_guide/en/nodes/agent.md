@@ -1,6 +1,6 @@
 # Agent Node
 
-The Agent node is the most fundamental node type in the DevAll platform, used to invoke Large Language Models (LLMs) for text generation, conversation, reasoning, and other tasks. It supports multiple model providers (OpenAI, Gemini, etc.) and can be configured with advanced features like tool calling, chain-of-thought, and memory.
+The Agent node is the most fundamental node type in the KdzeDev platform, used to invoke Large Language Models (LLMs) for text generation, conversation, reasoning, and other tasks. It supports multiple model providers (OpenAI, Gemini, etc.) and can be configured with advanced features like tool calling, chain-of-thought, and memory.
 
 ## Configuration
 

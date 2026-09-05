@@ -1,4 +1,4 @@
-﻿"""Graph orchestration adapted to ChatDev design_0.4.0 workflows."""
+﻿"""Graph orchestration adapted to KdzeDev design_0.4.0 workflows."""
 
 import threading
 from typing import Any, Callable, Dict, List, Optional
@@ -51,7 +51,7 @@ class ExecutionError(RuntimeError):
 
 
 class GraphExecutor:
-    """Executes ChatDev_new graph workflows with integrated memory and thinking management."""
+    """Executes KdzeDev graph workflows with integrated memory and thinking management."""
 
     def __init__(
         self,

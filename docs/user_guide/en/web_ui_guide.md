@@ -1,6 +1,6 @@
 # Frontend Web UI Quick Start Guide
 
-This guide helps users quickly get started with the DevAll Web UI, covering main functional pages and operation workflows.
+This guide helps users quickly get started with the KdzeDev Web UI, covering main functional pages and operation workflows.
 
 ## 1. System Entry
 

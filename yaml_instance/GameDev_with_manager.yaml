@@ -7,7 +7,6 @@ graph:
     - id: Final_Game_Executor
       type: python
       config:
-        interpreter: C:\ChatDev-main\ChatDev-main\.venv\Scripts\python.exe
         args: []
         env: {}
         timeout_seconds: 120

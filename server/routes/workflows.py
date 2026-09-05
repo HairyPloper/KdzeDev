@@ -126,19 +126,19 @@ async def get_workflow_args(filename: str):
 
         return {"args": args}
     except ValidationError as exc:
-        # 参数或文件名等校验错误
+        # Invalid parameters or filename.
         raise HTTPException(
             status_code=400,
             detail={"message": str(exc)},
         )
     except SecurityError as exc:
-        # 安全相关错误（例如路径遍历）
+        # Unsafe path, such as directory traversal.
         raise HTTPException(
             status_code=400,
             detail={"message": str(exc)},
         )
     except ResourceNotFoundError as exc:
-        # 文件不存在
+        # File not found.
         raise HTTPException(
             status_code=404,
             detail={"message": str(exc)},
@@ -146,7 +146,7 @@ async def get_workflow_args(filename: str):
     except Exception as exc:
         logger = get_server_logger()
         logger.log_exception(exc, f"Unexpected error retrieving workflow args: {filename}")
-        # 兜底错误
+        # Unexpected error.
         raise HTTPException(
             status_code=500,
             detail={"message": f"Failed to retrieve workflow args: {exc}"},
@@ -189,19 +189,19 @@ async def get_workflow_desc(filename: str):
         )
         return {"description": desc}
     except ValidationError as exc:
-        # 参数或文件名等校验错误
+        # Invalid parameters or filename.
         raise HTTPException(
             status_code=400,
             detail={"message": str(exc)},
         )
     except SecurityError as exc:
-        # 安全相关错误（例如路径遍历）
+        # Unsafe path, such as directory traversal.
         raise HTTPException(
             status_code=400,
             detail={"message": str(exc)},
         )
     except ResourceNotFoundError as exc:
-        # 文件不存在
+        # File not found.
         raise HTTPException(
             status_code=404,
             detail={"message": str(exc)},
@@ -209,7 +209,7 @@ async def get_workflow_desc(filename: str):
     except Exception as exc:
         logger = get_server_logger()
         logger.log_exception(exc, f"Unexpected error retrieving workflow args: {filename}")
-        # 兜底错误
+        # Unexpected error.
         raise HTTPException(
             status_code=500,
             detail={"message": f"Failed to retrieve workflow args: {exc}"},

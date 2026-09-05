@@ -1,6 +1,6 @@
 # Config Schema API Contract
 
-This reference explains how `/api/config/schema` and `/api/config/schema/validate` expose DevAll's dynamic config metadata so IDEs, frontend form builders, and CLI tools can scope schemas with breadcrumbs.
+This reference explains how `/api/config/schema` and `/api/config/schema/validate` expose KdzeDev's dynamic config metadata so IDEs, frontend form builders, and CLI tools can scope schemas with breadcrumbs.
 
 ## 1. Endpoints
 | Method & Path | Purpose |

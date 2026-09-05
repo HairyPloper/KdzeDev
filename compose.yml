@@ -1,17 +1,25 @@
+name: kdzedev
+
 services:
   backend:
     build:
       context: .
       dockerfile: Dockerfile
       target: runtime
-    container_name: chatdev_backend
+    container_name: kdzedev_backend
     volumes:
       - .:/app
     ports:
-      - "6400:6400"
+      - "127.0.0.1:6400:6400"
     env_file:
       - .env
       - .env.docker
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:6400/health/ready', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
     restart: unless-stopped
 
   frontend:
@@ -19,15 +27,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       target: dev
-    container_name: chatdev_frontend
+    container_name: kdzedev_frontend
     volumes:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "${FRONTEND_PORT:-5173}:5173"
-    env_file:
-      - .env
-      - .env.docker
+      - "127.0.0.1:${FRONTEND_PORT:-5173}:5173"
+    environment:
+      VITE_API_BASE_URL: http://backend:6400
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     restart: unless-stopped

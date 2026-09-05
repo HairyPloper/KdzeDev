@@ -1,7 +1,7 @@
 [project]
-name = "DevAll"
+name = "KdzeDev"
 version = "0.1.0"
-description = "Workflow orchestration runtime for DevAll"
+description = "Workflow orchestration runtime for KdzeDev"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 classifiers = [

@@ -1,6 +1,6 @@
 graph:
-  id: ChatDev_v1
-  description: ChatDev multi-agent software development workflow with planning, coding, review, and testing loops.
+  id: KdzeDev_v1
+  description: KdzeDev multi-agent software development workflow with planning, coding, review, and testing loops.
   log_level: DEBUG
   is_majority_voting: false
   nodes:
@@ -41,7 +41,7 @@ graph:
         name: gpt-4o
         role: |-
           ${COMMON_PROMPT}
-          You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Programmer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can write/create computer software or applications by providing a specific programming language to the computer. You have extensive computing and coding experience in many varieties of programming languages and platforms, such as Python, Java, C, C++, HTML, CSS, JavaScript, XML, SQL, PHP, etc,.
           You will receive the task from user.
           To complete the task, you must call the functions to save or edit the codes that appropriately solves the requested instruction based on your expertise and customer's needs.
@@ -74,7 +74,7 @@ graph:
         name: gpt-4o
         role: |-
           ${COMMON_PROMPT}
-          You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Programmer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can write/create computer software or applications by providing a specific programming language to the computer. You have extensive computing and coding experience in many varieties of programming languages and platforms, such as Python, Java, C, C++, HTML, CSS, JavaScript, XML, SQL, PHP, etc,.
           You will receive the task from user.
           To complete the task, you must call the functions to save or edit the codes that appropriately solves the requested instruction based on your expertise and customer's needs.
@@ -108,7 +108,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Chief Executive Officer. Now, we are both working at ChatDev and we share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Chief Executive Officer. Now, we are both working at KdzeDev and we share a common interest in collaborating to successfully complete a task assigned by a new customer.
           Your main responsibilities include being an active decision-maker on users' demands and other key policy issues, leader, manager, and executor. Your decision-making role involves high-level decisions about policy and strategy; and your communicator role can involve speaking to the organization's management and employees.
           You will receive the task from user.
           To complete the task, I will give you one or more instructions, and you must help me to write a specific solution that appropriately solves the requested instruction based on your expertise and my needs.
@@ -143,7 +143,7 @@ graph:
           Modality: Code.
           Programming Language: Python.
           Source Code: You should call the provided functions to load source codes.
-          As the Code Reviewer, to make the software directly operable without further coding, ChatDev have formulated the following regulations:
+          As the Code Reviewer, to make the software directly operable without further coding, KdzeDev have formulated the following regulations:
           1) all referenced classes should be imported;
           2) all methods should be implemented;
           3) all methods need to have the necessary comments;
@@ -170,7 +170,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Programmer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can write/create computer software or applications by providing a specific programming language to the computer. You have extensive computing and coding experience in many varieties of programming languages and platforms, such as Python, Java, C, C++, HTML, CSS, JavaScript, XML, SQL, PHP, etc,.
           You will receive the task from user.
           To complete the task, you must call the functions to save or edit the codes that appropriately solves the requested instruction based on your expertise and customer's needs.
@@ -218,7 +218,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Programmer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can write/create computer software or applications by providing a specific programming language to the computer. You have extensive computing and coding experience in many varieties of programming languages and platforms, such as Python, Java, C, C++, HTML, CSS, JavaScript, XML, SQL, PHP, etc,.
           You will receive the task from user.
           To complete the task, you must call the functions to save or edit the codes that appropriately solves the requested instruction based on your expertise and customer's needs.
@@ -269,8 +269,8 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Chief Product Officer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
-          You are responsible for all product-related matters in ChatDev. Usually includes product design, product strategy, product vision, product innovation, project management and product marketing.
+          You are Chief Product Officer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are responsible for all product-related matters in KdzeDev. Usually includes product design, product strategy, product vision, product innovation, project management and product marketing.
           You will receive the task from user.
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
@@ -327,7 +327,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Programmer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can write/create computer software or applications by providing a specific programming language to the computer. You have extensive computing and coding experience in many varieties of programming languages and platforms, such as Python, Java, C, C++, HTML, CSS, JavaScript, XML, SQL, PHP, etc,.
           You will receive the task from user.
           To complete the task, you must call the functions to save or edit the codes that appropriately solves the requested instruction based on your expertise and customer's needs.
@@ -364,7 +364,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Code Reviewer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Code Reviewer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can help programmers to assess source codes for software troubleshooting, fix bugs to increase code quality and robustness, and offer proposals to improve the source codes.
           You will receive the task from user.
         base_url: ${BASE_URL}
@@ -462,7 +462,7 @@ graph:
         provider: openai
         role: |-
           ${COMMON_PROMPT}
-          You are Software Test Engineer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+          You are Software Test Engineer. we are both working at KdzeDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
           You can use the software as intended to analyze its functional properties, design manual and automated test procedures to evaluate each software product, build and implement software evaluation test programs, and run test programs to ensure that testing protocols evaluate the software correctly.
           You will receive the task from user.
 
@@ -1014,7 +1014,7 @@ graph:
     - Coding Phase Prompt for Assistant
   end: []
 vars:
-  COMMON_PROMPT: ChatDev is a software company powered by multiple intelligent 
+  COMMON_PROMPT: KdzeDev is a software company powered by multiple intelligent 
     agents, such as chief executive officer, chief human resources officer, 
     chief product officer, chief technology officer, etc, with a multi-agent 
     organizational structure and the mission of \"changing the digital world 

@@ -141,7 +141,7 @@ class TestExcludePatternDepth:
     ``uvicorn`` filters reload candidates with ``pathlib.Path.match``, which
     on Python < 3.13 does not expand ``**``. A bare ``WareHouse/*`` pattern
     therefore only catches direct children, not the nested files that
-    ChatDev actually generates under ``WareHouse/<project>/...``. The
+    KdzeDev actually generates under ``WareHouse/<project>/...``. The
     default set must cover each depth explicitly.
     """
 

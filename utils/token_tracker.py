@@ -1,4 +1,4 @@
-"""Token usage tracking module for DevAll project."""
+"""Token usage tracking module for KdzeDev project."""
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict, List, Optional, Any

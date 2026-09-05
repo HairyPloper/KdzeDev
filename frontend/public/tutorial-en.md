@@ -183,7 +183,7 @@ This keeps the newest 7 messages (including node input and output messages).
 
 #### What is a Context Window?
 
-In DevAll, the **context window** is a **node-level retention policy**. After each run, the node tries to clean up its own input queue of Messages, keeping only what satisfies the retention rules to control context size. This does not affect the current run; it only affects inputs visible in later runs.
+In KdzeDev, the **context window** is a **node-level retention policy**. After each run, the node tries to clean up its own input queue of Messages, keeping only what satisfies the retention rules to control context size. This does not affect the current run; it only affects inputs visible in later runs.
 
 **Rules** (configured via `Context Window Size` on the node):
 * `0`: clear all context, keeping only messages marked by `Keep Message Input = True` on edges.
@@ -241,7 +241,7 @@ Below are more detailed informations about this system:
 
 ## More Things
 
-We provide a set of examples: files named `demo_*.yaml` are feature/module demos, while files named directly (e.g., `ChatDev_v1.yaml`) are in-house implementations or recreated workflows.
+We provide a set of examples: files named `demo_*.yaml` are feature/module demos, while files named directly (e.g., `KdzeDev_v1.yaml`) are in-house implementations or recreated workflows.
 
 - [Node Types Explained](#node-types-explained)
   - [Agent Node](#agent-node)
@@ -260,7 +260,7 @@ We provide a set of examples: files named `demo_*.yaml` are feature/module demos
 
 # Node Types Explained
 
-DevAll provides various node types, each with specific purposes and configuration options.
+KdzeDev provides various node types, each with specific purposes and configuration options.
 
 ## Agent Node
 
@@ -275,7 +275,7 @@ Agent Nodes are the core node type, used to call large language models (LLMs) fo
 Agent Nodes can be configured with tools, allowing the model to call external APIs or execute functions. Click Advanced Settings to see the options. Multiple tools can be configured, such as both MCP and Function tools, or multiple MCP tools.
 ![agent_tooling_config.png](media/agent_toolig_config.png)
 
-DevAll supports two types of tools:
+KdzeDev supports two types of tools:
 
 #### 1. Function Tooling (Local Functions)
 
@@ -310,8 +310,8 @@ The system includes several built-in tools that can be used directly in Agent No
 
 | Module | Key Functions | Description | Example |
 |--------|--------------|-------------|---------|
-| **file.py** | `save_file`, `load_file`, `list_directory`, `search_in_files`, etc. | File operations | [ChatDev_v1](http://localhost:5173/workflows/ChatDev_v1) |
-| **uv_related.py** | `install_python_packages`, `init_python_env`, `uv_run` | Python environment management | [ChatDev_v1](http://localhost:5173/workflows/ChatDev_v1) |
+| **file.py** | `save_file`, `load_file`, `list_directory`, `search_in_files`, etc. | File operations | [KdzeDev_v1](http://localhost:5173/workflows/KdzeDev_v1) |
+| **uv_related.py** | `install_python_packages`, `init_python_env`, `uv_run` | Python environment management | [KdzeDev_v1](http://localhost:5173/workflows/KdzeDev_v1) |
 | **deep_research.py** | `search_save_result`, `report_*` series | Deep research & report generation | [deep_research_v1](http://localhost:5173/workflows/deep_research_v1) |
 | **web.py** | `web_search`, `read_webpage_content` | Web search & content retrieval | [deep_research_v1](http://localhost:5173/workflows/deep_research_v1) |
 | **video.py** | `render_manim`, `concat_videos` | Manim video rendering | [teach_video](http://localhost:5173/workflows/teach_video) |
@@ -404,9 +404,9 @@ Passthrough Nodes do nothing but pass messages downstream. **By default, only th
 
 **Key uses:**
 
-1. **Retain initial context as entry node**: Use with `Keep Message Input` on edges to ensure the original task is always preserved (e.g., `yaml_instance/ChatDev_v1.yaml`)
+1. **Retain initial context as entry node**: Use with `Keep Message Input` on edges to ensure the original task is always preserved (e.g., `yaml_instance/KdzeDev_v1.yaml`)
 2. **Filter redundant outputs in loops**: Pass only the final result to control loop output and avoid context bloat
-3. **Simplify graph structure**: As a logical placeholder for organization and readability (e.g., `yaml_instance/ChatDev_v1.yaml`)
+3. **Simplify graph structure**: As a logical placeholder for organization and readability (e.g., `yaml_instance/KdzeDev_v1.yaml`)
 
 ---
 
@@ -417,7 +417,7 @@ Literal Nodes output fixed text, ignoring all input. You can set the Message Rol
 ![literal.png](media/literal.png)
 
 **Typical uses:**
-- Inject fixed instructions or context (e.g., `yaml_instance/ChatDev_v1.yaml`)
+- Inject fixed instructions or context (e.g., `yaml_instance/KdzeDev_v1.yaml`)
 - Test downstream nodes (e.g., `yaml_instance/demo_dynamic.yaml`)
 - Fixed responses in conditional branches
 
@@ -436,7 +436,7 @@ Loop Counter Nodes limit the number of loop executions. It counts triggers and o
 
 > **Important**: Since no output is produced before the limit, the Loop Counter's edge must connect both to nodes inside the loop (to keep the loop going, but has no effect) and outside (to exit when the limit is reached).
 
-See: `yaml_instance/ChatDev_v1.yaml`
+See: `yaml_instance/KdzeDev_v1.yaml`
 
 ---
 
@@ -640,7 +640,7 @@ If none are met, repeat from Step 2.
 
 # Workspace Structure
 
-DevAll uses a layered workspace structure to manage files:
+KdzeDev uses a layered workspace structure to manage files:
 
 ## Directory Structure
 

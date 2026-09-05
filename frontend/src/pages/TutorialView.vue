@@ -1,12 +1,12 @@
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import markdownItAnchor from 'markdown-it-anchor'
 import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
 const renderedContent = ref('')
 const markdownBody = ref(null)
@@ -30,7 +30,6 @@ md.use(markdownItAnchor, {
       .replace(/\s+/g, '-')
 })
 
-const getTutorialFile = () => (locale.value === 'en' ? '/tutorial-en.md' : '/tutorial-zh.md')
 
 const scrollToHash = () => {
   // Wait for DOM to update, then scroll to hash if present
@@ -81,7 +80,7 @@ const addCopyButtons = () => {
 
 const loadTutorial = async () => {
   try {
-    const response = await fetch(getTutorialFile())
+    const response = await fetch('/tutorial-en.md')
     if (response.ok) {
       let text = await response.text()
       // Fix media paths to point to /media/ (absolute path from public root)
@@ -101,16 +100,6 @@ const loadTutorial = async () => {
   }
 }
 
-const switchLang = (lang) => {
-  if (locale.value !== lang) {
-    locale.value = lang
-  }
-}
-
-watch(locale, () => {
-  loadTutorial()
-})
-
 onMounted(() => {
   loadTutorial()
 })
@@ -118,10 +107,6 @@ onMounted(() => {
 
 <template>
   <div class="tutorial-view">
-    <div class="lang-switch">
-      <button :class="{ active: locale === 'zh' }" @click="switchLang('zh')">{{ $t('tutorial.zh') }}</button>
-      <button :class="{ active: locale === 'en' }" @click="switchLang('en')">{{ $t('tutorial.en') }}</button>
-    </div>
     <div ref="markdownBody" class="markdown-body" v-html="renderedContent"></div>
   </div>
 </template>
@@ -150,38 +135,6 @@ onMounted(() => {
   height: 100vh;
 }
 
-.lang-switch {
-  position: absolute;
-  top: 80px; /* 55px nav + 25px spacing */
-  right: 48px;
-  z-index: 10;
-  display: flex;
-  gap: 12px;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-:global(body.nav-hidden .lang-switch) {
-  top: 25px; /* Adjust to 25px spacing from top of screen when nav is hidden */
-}
-.lang-switch button {
-  background: linear-gradient(90deg, #232526 60%, #00eaff22 100%);
-  color: #00eaff;
-  border: 1.5px solid #00eaff33;
-  border-radius: 8px;
-  padding: 6px 18px;
-  font-size: 1em;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px #00eaff11;
-}
-.lang-switch button.active,
-.lang-switch button:hover {
-  background: linear-gradient(90deg, #00eaff 0%, #232526 100%);
-  color: #fff;
-  border: 1.5px solid #00eaff;
-  box-shadow: 0 0 12px #00eaff44;
-}
 
 :deep(.markdown-body) {
   max-width: 980px;

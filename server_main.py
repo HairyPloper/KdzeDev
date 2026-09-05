@@ -70,7 +70,7 @@ def build_reload_kwargs(args: argparse.Namespace) -> dict:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="DevAll Workflow Server")
+    parser = argparse.ArgumentParser(description="KdzeDev Workflow Server")
     parser.add_argument(
         "--host",
         type=str,
@@ -142,7 +142,7 @@ def main():
     )
 
     logger = logging.getLogger(__name__)
-    logger.info(f"Starting DevAll Workflow Server on {args.host}:{args.port}")
+    logger.info(f"Starting KdzeDev Workflow Server on {args.host}:{args.port}")
 
     if args.reload and not _watchfiles_available():
         logger.warning(

@@ -28,14 +28,6 @@
             </label>
             <p class="setting-desc">{{ $t('settings.enable_help_tooltips_desc') }}</p>
           </div>
-          <div class="settings-item">
-            <label class="setting-label">{{ $t('settings.language') }}</label>
-            <select v-model="localConfig.LANGUAGE" class="language-select">
-              <option value="en">English</option>
-              <option value="zh">简体中文</option>
-            </select>
-            <p class="setting-desc">{{ $t('settings.language_desc') }}</p>
-          </div>
         </div>
         <div class="modal-footer">
           <button class="cancel-button" @click="close">{{ $t('common.cancel') }}</button>
@@ -49,9 +41,7 @@
 <script setup>
 import { reactive, watch } from 'vue'
 import { configStore } from '../utils/configStore.js'
-import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n()
 
 const props = defineProps({
   isVisible: {
@@ -63,8 +53,7 @@ const props = defineProps({
 const localConfig = reactive({
   AUTO_SHOW_ADVANCED: false,
   AUTO_EXPAND_MESSAGES: false,
-  ENABLE_HELP_TOOLTIPS: true,
-  LANGUAGE: 'en'
+  ENABLE_HELP_TOOLTIPS: true
 })
 
 watch(() => props.isVisible, (newVal) => {
@@ -84,7 +73,6 @@ const close = () => {
 const save = () => {
   // Commit local changes to global store
   Object.assign(configStore, localConfig)
-  locale.value = localConfig.LANGUAGE
   close()
 }
 </script>
@@ -159,22 +147,7 @@ const save = () => {
   padding-bottom: 0;
 }
 
-.setting-label {
-  display: block;
-  color: #e0e0e0;
-  font-size: 15px;
-  margin-bottom: 8px;
-}
 
-.language-select {
-  width: 100%;
-  padding: 8px;
-  background: #2a2a2a;
-  border: 1px solid #444;
-  color: #fff;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
 
 .checkbox-label {
   display: flex;

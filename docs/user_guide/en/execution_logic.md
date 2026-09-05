@@ -2,11 +2,11 @@
 
 > Version: 2025-12-16
 
-This document explains how the DevAll backend parses and executes workflow graphs, with particular focus on handling complex graphs containing cyclic structures.
+This document explains how the KdzeDev backend parses and executes workflow graphs, with particular focus on handling complex graphs containing cyclic structures.
 
 ## 1. Execution Engine Overview
 
-The DevAll workflow execution engine supports two types of graph structures:
+The KdzeDev workflow execution engine supports two types of graph structures:
 
 | Graph Type | Characteristics | Execution Strategy |
 |------------|-----------------|-------------------|

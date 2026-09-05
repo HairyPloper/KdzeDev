@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy the prebuilt virtualenv from the builder
 COPY --from=builder /opt/venv /opt/venv
+COPY --from=builder /usr/local/bin/uv /usr/local/bin/uv
 
 # Copy the rest of the application code
 COPY . .

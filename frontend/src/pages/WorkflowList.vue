@@ -140,11 +140,11 @@ const filteredFiles = computed(() => {
     })
   }
 
-  // Sort by name using localeCompare for Pinyin support
+  // Sort workflow names using English collation.
   return result.sort((a, b) => {
     const nameA = a?.name ?? ''
     const nameB = b?.name ?? ''
-    return nameA.localeCompare(nameB, 'zh')
+    return nameA.localeCompare(nameB, 'en')
   })
 })
 

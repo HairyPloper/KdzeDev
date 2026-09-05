@@ -38,7 +38,7 @@ Tools for file and directory management within `code_workspace/`.
 | `move_path` | Move a file or directory |
 | `search_in_files` | Search for text or regex patterns in workspace files |
 
-**Example YAML**: [ChatDev_v1.yaml](../../../../../yaml_instance/ChatDev_v1.yaml), [file_tool_use_case.yaml](../../../../../yaml_instance/file_tool_use_case.yaml)
+**Example YAML**: [KdzeDev_v1.yaml](../../../../../yaml_instance/KdzeDev_v1.yaml), [file_tool_use_case.yaml](../../../../../yaml_instance/file_tool_use_case.yaml)
 
 ---
 
@@ -52,7 +52,7 @@ Manage Python environments and dependencies using uv.
 | `init_python_env` | Initialize Python environment (uv lock + venv) |
 | `uv_run` | Execute uv run in workspace to run modules or scripts |
 
-**Example YAML**: [ChatDev_v1.yaml](../../../../../yaml_instance/ChatDev_v1.yaml)
+**Example YAML**: [KdzeDev_v1.yaml](../../../../../yaml_instance/KdzeDev_v1.yaml)
 
 ---
 
@@ -113,7 +113,6 @@ Manim animation rendering and video processing.
 | `render_manim` | Render Manim script, auto-detects scene class and outputs video |
 | `concat_videos` | Concatenate multiple video files using FFmpeg |
 
-**Example YAML**: [teach_video.yaml](../../../../../yaml_instance/teach_video.yaml), [teach_video.yaml](../../../../../yaml_instance/teach_video.yaml)
 
 ---
 

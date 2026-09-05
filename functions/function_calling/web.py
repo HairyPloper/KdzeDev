@@ -8,7 +8,7 @@ def web_search(query: str, page: int = 1, language: str = "en", country: str = "
     Args:
         query (str): The keyword(s) to search for.
         page (int): The page number of the results to return. Defaults to 1.
-        language (str): The language of the search results. Defaults to "en", can be "en", "zh-cn", "zh-tw", "ja", "ko".
+        language (str): The language of the search results. Defaults to "en" (English).
         country (str): The country of the search results. Defaults to "us", can be "us", "cn", "jp", "kr".
 
     Returns:

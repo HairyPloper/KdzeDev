@@ -29,7 +29,7 @@ nodes:
             Authorization: Bearer ${MY_MCP_TOKEN}
           timeout: 15
 ```
-DevAll connects to the URL for each list/call request and passes `headers`. If the server is unreachable, an error is raised immediately—there is no local fallback.
+KdzeDev connects to the URL for each list/call request and passes `headers`. If the server is unreachable, an error is raised immediately—there is no local fallback.
 
 ## 3. `McpLocalConfig` fields
 `mcp_local` declares the process arguments directly under `config`:
@@ -55,7 +55,7 @@ nodes:
           wait_for_log: "MCP ready"
           startup_timeout: 8
 ```
-DevAll keeps the process alive and relays MCP frames over stdio.
+KdzeDev keeps the process alive and relays MCP frames over stdio.
 
 ## 4. FastMCP sample server
 `mcp_example/mcp_server.py`:
@@ -81,12 +81,12 @@ uv run fastmcp run mcp_example/mcp_server.py --transport streamable-http --port 
 
 ## 5. Security & operations
 - **Network exposure**: Remote mode should sit behind HTTPS + ACL/API keys. Local mode still has access to the host filesystem, so keep the script sandboxed.
-- **Resource cleanup**: Local mode processes are terminated by DevAll; make sure they gracefully handle SIGTERM/SIGKILL.
+- **Resource cleanup**: Local mode processes are terminated by KdzeDev; make sure they gracefully handle SIGTERM/SIGKILL.
 - **Logs**: Emit a clear readiness line that matches `wait_for_log` to debug startup issues.
 - **Auth**: Remote mode handles tokens via `headers`; Local mode can receive secrets via `env` (never commit them).
 - **Multi-session**: If the MCP server is single-tenant, cap concurrency (e.g., `max_concurrency=1`) and share the same YAML config.
 
 ## 6. Debugging checklist
 1. Remote: ping the HTTP endpoint via curl or `fastmcp client`. Local: run the binary manually and confirm the readiness log.
-2. Start DevAll (optionally with `--reload`) and observe backend logs for tool discovery.
+2. Start KdzeDev (optionally with `--reload`) and observe backend logs for tool discovery.
 3. When calls fail, inspect the Web UI tool traces or the structured logs under `logs/`.
