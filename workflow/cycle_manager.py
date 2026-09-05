@@ -3,6 +3,7 @@
 from typing import Dict, List, Set, Optional, Any
 from dataclasses import dataclass, field
 from entity.configs import Node
+from utils.iteration_limits import engine_cycle_default, positive_integer
 
 
 @dataclass
@@ -20,7 +21,7 @@ class CycleInfo:
     # New fields for refactored cycle execution
     initial_node: Optional[str] = None  # The unique initial node when first entering the cycle
     configured_entry_node: Optional[str] = None  # User-configured entry node (if any)
-    max_iterations_default: int = 100  # Default maximum iterations if max_iterations is None
+    max_iterations_default: int = field(default_factory=engine_cycle_default)
     
     def add_node(self, node_id: str) -> None:
         """Add a node to the cycle."""
@@ -40,12 +41,12 @@ class CycleInfo:
     
     def is_within_iteration_limit(self) -> bool:
         """Check if the cycle should continue executing."""
-        max_iter = self.max_iterations if self.max_iterations is not None else self.max_iterations_default
-        return self.iteration_count < max_iter
+        return self.iteration_count < self.get_max_iterations()
 
     def get_max_iterations(self) -> int:
         """Get the effective maximum iterations."""
-        return self.max_iterations if self.max_iterations is not None else self.max_iterations_default
+        limit = self.max_iterations if self.max_iterations is not None else self.max_iterations_default
+        return positive_integer(limit, "cycle max_iterations")
 
     def reset_iteration_count(self) -> None:
         """Reset the iteration counter."""

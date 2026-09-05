@@ -6,7 +6,7 @@ The Loop Counter node is a loop control node used to limit the number of iterati
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `max_iterations` | int | Yes | `10` | Maximum number of loop iterations, must be ≥ 1 |
+| `max_iterations` | int | No | `LOOP_COUNTER_MAX_ITERATIONS` (fallback `10`) | Omit or use `null` to inherit; a positive integer overrides it locally |
 | `reset_on_emit` | bool | No | `true` | Whether to reset the counter after reaching the limit |
 | `message` | text | No | - | Message content to send to downstream when limit is reached |
 

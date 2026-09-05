@@ -6,6 +6,7 @@ from typing import Dict, List, Callable, Any, Set, Optional
 
 from entity.configs import Node, EdgeLink
 from utils.log_manager import LogManager
+from utils.iteration_limits import engine_cycle_default
 from workflow.cycle_manager import CycleManager
 from workflow.executor.parallel_executor import ParallelExecutor
 from workflow.topology_builder import GraphTopologyBuilder
@@ -518,7 +519,7 @@ class CycleExecutor:
                         inner_cycle_id,
                         inner_cycle_nodes,
                         inner_initial_node,
-                        max_iterations=100,
+                        max_iterations=engine_cycle_default(),
                     )
 
                     if inner_external_nodes:

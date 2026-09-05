@@ -10,8 +10,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Anton, the team's problem finder.
 
@@ -32,8 +30,6 @@ graph:
 
           Write in English, within 300 words. Your task is finding problems,
           not choosing the final business.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -46,8 +42,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Makarony, the team's creative thinker.
 
@@ -68,8 +62,6 @@ graph:
 
           Begin with a compact founder summary, followed by the five ideas.
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -82,8 +74,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Toške, the team's customer advocate.
 
@@ -104,8 +94,6 @@ graph:
           available for Pako.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -118,8 +106,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Pako, the team's practical builder.
 
@@ -142,8 +128,6 @@ graph:
 
           Write in English, within 300 words. Do not write code or choose the
           final winner.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -156,8 +140,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Koki, the team's backend developer.
 
@@ -178,8 +160,6 @@ graph:
           findings so the next teammate can work from your handoff.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -192,8 +172,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Pepi, the team's frontend and UI/UX designer.
 
@@ -214,8 +192,6 @@ graph:
           technical setup, customer journeys, and design effort. Label assumptions.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -228,8 +204,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Šomi, the team's language and communication specialist, drawing
           on the perspective of a foreign-language teacher.
@@ -253,8 +227,6 @@ graph:
           Treat your wording as draft copy to test, not verified customer feedback.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -267,8 +239,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Ceki, the team's quality assurance specialist.
 
@@ -292,8 +262,6 @@ graph:
           could affect cost or timing. Preserve unresolved issues.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -306,8 +274,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Pijeki, the team's money planner.
 
@@ -332,8 +298,6 @@ graph:
           and unresolved technical, design, language, and QA issues for Dinča.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -346,8 +310,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Dinča, the team's constructive skeptic.
 
@@ -372,8 +334,6 @@ graph:
           Include unresolved delivery, usability, language, and quality issues.
 
           Write in English, within 300 words.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -386,8 +346,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Dado, the team's AI business legal consultant.
 
@@ -419,8 +377,6 @@ graph:
 
           Write in English, within 300 words. Focus on issues relevant to the
           proposed pilots and their effect on cost, timing, or feasibility.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -433,8 +389,6 @@ graph:
       context_window: 0
       log_output: true
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Miki, the team's final decision maker.
 
@@ -465,8 +419,6 @@ graph:
 
           Use English and stay within 500 words. Do not claim research was
           performed or guarantee success. The founders make the final decision.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -476,8 +428,6 @@ graph:
     - id: Viki
       type: agent
       config:
-        name: gpt-4o
-        provider: openai
         role: |-
           You are Viki, the team captain helping a group of friends discover a business worth testing for their planned company, Kdze.
 
@@ -494,8 +444,6 @@ graph:
           Do not propose business ideas yet.
 
           Write a concise handoff titled "Founder brief" in English, within 250 words. Be friendly and practical.
-        base_url: ${BASE_URL}
-        api_key: ${API_KEY}
         params: {}
         tooling: []
         thinking: null
@@ -503,6 +451,32 @@ graph:
         skills: null
         retry: null
       description: CEO / Team captain — turn the founders' brief into clear criteria.
+      context_window: 0
+      log_output: true
+    - id: gospodarice
+      type: agent
+      config:
+        role: |-
+          You are gospodarice, the fictional collective voice of the Kdze
+          team members' wives: the company's unofficial cheering section.
+
+          This is a playful side role, separate from the business workflow.
+          If someone deliberately runs you, offer a short, warm pep talk with
+          a snack reminder, an optional outfit tip, and one affectionate but
+          useful reality check about the team's plans. A little friendly
+          teasing is welcome. Keep it kind and lighthearted.
+
+          Do not invent names, private details, or actual opinions of anyone's
+          wife. Do not make business decisions or change the team's work.
+
+          Write in English, within 100 words. Finish with a fun Kdze cheer.
+        params: {}
+        tooling: []
+        thinking: null
+        memories: []
+        skills: null
+        retry: null
+      description: Kdze's wives' club — snacks, outfit checks, encouragement, and affectionate constructive criticism.
       context_window: 0
       log_output: true
   edges:

@@ -14,11 +14,11 @@ graph:
     context_window: <int> | 0
     config:
       <variant[config]=model>:
-        name: <string> | required
+        name: <string> | None
         role: <text> | None
         provider: <string> | [openai, gemini]
-        base_url: <string> | "${BASE_URL}"
-        api_key: <string> | "${API_KEY}"
+        base_url: <string> | None
+        api_key: <string> | None
         params:
           <key>: <value> | required
         tooling:
@@ -142,8 +142,8 @@ graph:
                   embedding:
                     provider: <string> | "openai"
                     model: <string> | "text-embedding-3-small"
-                    api_key: <string> | "${API_KEY}"
-                    base_url: <string> | "${BASE_URL}"
+                    api_key: <string> | None
+                    base_url: <string> | None
                     params:
                       <key>: <value> | required
                 <variant[config]=file>:
@@ -157,8 +157,8 @@ graph:
                   embedding:
                     provider: <string> | "openai"
                     model: <string> | "text-embedding-3-small"
-                    api_key: <string> | "${API_KEY}"
-                    base_url: <string> | "${BASE_URL}"
+                    api_key: <string> | None
+                    base_url: <string> | None
                     params:
                       <key>: <value> | required
                 <variant[config]=blackboard>:
@@ -185,7 +185,7 @@ graph:
         content: <text> | required
         role: <string> | [user, assistant]
       <variant[config]=loop_counter>:
-        max_iterations: <int> | 10
+        max_iterations: <int> | None
         reset_on_emit: <bool> | true
         message: <text> | None
   edges:
@@ -237,8 +237,8 @@ graph:
         embedding:
           provider: <string> | "openai"
           model: <string> | "text-embedding-3-small"
-          api_key: <string> | "${API_KEY}"
-          base_url: <string> | "${BASE_URL}"
+          api_key: <string> | None
+          base_url: <string> | None
           params:
             <key>: <value> | required
       <variant[config]=file>:
@@ -252,8 +252,8 @@ graph:
         embedding:
           provider: <string> | "openai"
           model: <string> | "text-embedding-3-small"
-          api_key: <string> | "${API_KEY}"
-          base_url: <string> | "${BASE_URL}"
+          api_key: <string> | None
+          base_url: <string> | None
           params:
             <key>: <value> | required
       <variant[config]=blackboard>:

@@ -7,7 +7,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -122,7 +122,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -234,7 +234,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -301,7 +301,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -338,7 +338,7 @@
             <span v-if="field.required" class="required-asterisk">*</span>
             <RichTooltip
               v-if="field.description"
-              :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+              :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
               placement="top"
             >
               <span class="help-icon" tabindex="0">?</span>
@@ -364,7 +364,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -388,7 +388,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -415,7 +415,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -440,7 +440,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -465,7 +465,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>
@@ -520,7 +520,7 @@
           <span v-if="field.required" class="required-asterisk">*</span>
           <RichTooltip
             v-if="field.description"
-            :content="{ description: $te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : field.description }"
+            :content="{ description: field.description || ($te('schema_desc.' + field.name) ? $t('schema_desc.' + field.name) : '') }"
             placement="top"
           >
             <span class="help-icon" tabindex="0">?</span>

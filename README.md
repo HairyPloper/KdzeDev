@@ -19,7 +19,8 @@ See [setup and maintenance](docs/SETUP.md) for restart commands and storage deta
 ## Business idea team
 
 Open `Kdze_new_business_idea` in the editor. The team helps a group of friends
-find a business idea for their planned company, **Kdze**, and uses `gpt-4o`:
+find a business idea for their planned company, **Kdze**. Agents inherit the
+model settings in `.env`; the example defaults use `gpt-4o`:
 
 | Agent | Task |
 | --- | --- |
@@ -36,6 +37,9 @@ find a business idea for their planned company, **Kdze**, and uses `gpt-4o`:
 | Dinča | Challenge assumptions and identify risks |
 | Dado | Review legal questions and requirements for each pilot |
 | Miki | Recommend an idea and a seven-day validation plan |
+
+The disconnected `gospodarice` node is a playful wives' club cameo. It is
+outside the working team's sequence and stays inactive during normal runs.
 
 At launch, describe your skills, interests, location, time, and budget.
 The team passes its findings along in the order above. Its recommendations are

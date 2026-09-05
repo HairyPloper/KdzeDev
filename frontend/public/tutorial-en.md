@@ -17,6 +17,10 @@ offer and language needs. Ceki defines quality checks. Pijeki estimates costs.
 Dinča challenges assumptions. Dado flags legal questions for the pilots.
 Miki chooses a candidate and proposes a seven-day test that accounts for those questions.
 
+The separate **gospodarice** node is a fun wives' club cameo with encouragement
+and friendly teasing. It has no connections and is not a start node, so it
+does not run or use API credits during the team's normal workflow.
+
 At launch, describe your skills, interests, available time, location, and budget.
 Unknown details should stay marked as unknown. The team has no research tools
 configured, so treat customer demand and financial estimates as hypotheses.
@@ -35,15 +39,18 @@ An agent calls a language model. Use these settings for the current team:
 | --- | --- |
 | ID | The teammate's name |
 | Type | agent |
-| Name | gpt-4o (the model name) |
-| Provider | OpenAI |
-| Base URL | ${BASE_URL} |
-| API Key | ${API_KEY} |
+| Name | Leave empty to inherit MODEL_NAME |
+| Provider | Leave empty to inherit MODEL_PROVIDER |
+| Base URL | Leave empty to inherit BASE_URL |
+| API Key | Leave empty to inherit API_KEY |
 | System Prompt | The teammate's task and expected handoff |
 | Context Window | Leave at the current default for your first test |
 | Log Output | Enabled |
 
 Keep the real API key in the backend's `.env` file.
+Enter a value in any of these four fields to override it for that agent only.
+For another service, override its endpoint, model, and credential together.
+Use an environment placeholder such as `${OTHER_API_KEY}` for a credential override.
 Tools, thinking, memories, skills, and custom retry settings are optional.
 The current team does not need them for its first run.
 
@@ -66,6 +73,11 @@ Supply fixed text, such as shared instructions, without calling a model.
 ### Loop counter node
 
 Limit how many times a loop repeats.
+Leave **Maximum Iterations** empty to use the backend's
+`LOOP_COUNTER_MAX_ITERATIONS` environment setting (default 10), or enter a
+positive integer to override it for this node. The separate
+`ENGINE_MAX_ITERATIONS` setting caps engine cycles, including nested cycles
+(default 100). Neither setting changes a sequential team's number of agents.
 
 ### Loop timer node
 

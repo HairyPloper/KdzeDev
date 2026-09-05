@@ -16,8 +16,8 @@ docker compose ps
 
 Set `API_KEY` in `.env` and keep `BASE_URL=https://api.openai.com/v1`.
 Create a key in your [OpenAI API account](https://platform.openai.com/api-keys).
-API usage has separate billing from ChatGPT subscriptions. The model is chosen
-in each agent's configuration; the business idea team uses `gpt-4o`.
+API usage has separate billing from ChatGPT subscriptions. The business idea
+team inherits its model settings from `.env`, with optional per-agent overrides.
 
 Open the [web UI](http://localhost:5173). The backend exposes
 [health status](http://localhost:6400/health/ready) and
@@ -53,6 +53,79 @@ run `docker compose up -d --build --renew-anon-volumes frontend`.
 
 To change the UI port, set `FRONTEND_PORT=5174` in `.env`, run
 `docker compose up -d`, and open http://localhost:5174.
+
+## Global agent settings
+
+Configure all agents from `.env`:
+
+```dotenv
+MODEL_PROVIDER=openai
+MODEL_NAME=gpt-4o
+BASE_URL=https://api.openai.com/v1
+API_KEY=your-openai-key
+```
+
+`MODEL_PROVIDER` selects the registered client adapter (`openai` or `gemini`).
+OpenAI-compatible services such as Groq also use the `openai` adapter.
+For Groq, set `MODEL_NAME=llama-3.3-70b-versatile`,
+`BASE_URL=https://api.groq.com/openai/v1`, and use your Groq key in `API_KEY`.
+See [Groq's compatibility guide](https://console.groq.com/docs/openai).
+
+Each node field overrides its matching global setting independently:
+
+| Agent field | Global default |
+| --- | --- |
+| `provider` | `MODEL_PROVIDER` (fallback `openai`) |
+| `name` | `MODEL_NAME` (fallback `gpt-4o`) |
+| `base_url` | `BASE_URL` (otherwise the adapter's built-in endpoint) |
+| `api_key` | `API_KEY` (otherwise the adapter's authentication behavior) |
+
+Omitted, empty, or null fields inherit. The business workflow inherits all four.
+In the UI, leave these fields empty to inherit, or fill in an override.
+For example, to use OpenAI for one agent while the rest use Groq:
+
+```yaml
+config:
+  provider: openai
+  name: gpt-4o
+  base_url: https://api.openai.com/v1
+  api_key: ${OPENAI_API_KEY}
+  role: Your instructions for this agent.
+```
+
+Set that separate `OPENAI_API_KEY` in `.env`. Changing only `provider` does not
+switch the other three settings; keep the endpoint, model, and credential matched.
+Use placeholders for credential overrides, so workflow files contain no secrets.
+Global defaults come from the backend environment; root-level YAML `vars` apply
+when explicitly referenced with placeholders.
+
+Apply `.env` changes with `docker compose up -d --force-recreate backend` when
+no workflow is running, then refresh the UI. Switching defaults does not rewrite
+existing explicit node overrides.
+
+## Iteration defaults
+
+Set these positive integers in `.env`:
+
+```dotenv
+LOOP_COUNTER_MAX_ITERATIONS=10
+ENGINE_MAX_ITERATIONS=100
+```
+
+Loop-counter nodes inherit `LOOP_COUNTER_MAX_ITERATIONS` when their
+`config.max_iterations` is omitted or `null`. In the UI, leave **Maximum
+Iterations** empty to inherit, or enter a number to override it for that node.
+Existing explicit values stay local overrides.
+
+`ENGINE_MAX_ITERATIONS` is the separate safety cap for each engine cycle,
+including nested cycles. A node override does not override the engine cap.
+If a counter needs more than 100 triggers, increase the engine cap as needed.
+Neither setting limits the number of agents or repeats a sequential workflow.
+The business idea team has no loops, so these settings do not change its run.
+
+After editing `.env`, apply it with
+`docker compose up -d --force-recreate backend`. Blank, zero, negative, and
+non-integer values are rejected when the relevant configuration is loaded.
 
 ## Where your work is saved
 

@@ -6,11 +6,11 @@ The Agent node is the most fundamental node type in the KdzeDev platform, used t
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `provider` | string | Yes | `openai` | Model provider name, e.g., `openai`, `gemini` |
-| `name` | string | Yes | - | Model name, e.g., `gpt-4o`, `gemini-2.0-flash-001` |
+| `provider` | string | No | `MODEL_PROVIDER` (fallback `openai`) | Client adapter; empty or null inherits |
+| `name` | string | No | `MODEL_NAME` (fallback `gpt-4o`) | Model name; empty or null inherits |
 | `role` | text | No | - | System prompt |
-| `base_url` | string | No | Provider default | API endpoint URL, supports `${VAR}` placeholders |
-| `api_key` | string | No | - | API key, recommend using environment variable `${API_KEY}` |
+| `base_url` | string | No | `BASE_URL` | Endpoint override; empty or null inherits |
+| `api_key` | string | No | `API_KEY` | Credential override; use an environment placeholder |
 | `params` | dict | No | `{}` | Model call parameters (temperature, top_p, etc.) |
 | `tooling` | object | No | - | Tool calling configuration, see [Tooling Module](../modules/tooling/README.md) |
 | `thinking` | object | No | - | Chain-of-thought configuration, e.g., chain-of-thought, reflection |

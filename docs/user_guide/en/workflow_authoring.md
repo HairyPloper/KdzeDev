@@ -19,14 +19,18 @@ substitution variables. See [field specifications](field_specs.md) and the
 
 ## Agent settings
 
-Set `type: agent` and configure the model under `config`:
-`name: gpt-4o`, `provider: openai`, `base_url: ${BASE_URL}`,
-and `api_key: ${API_KEY}`. Put the agent's instructions in `role`.
+Set `type: agent` and put the agent's instructions in `config.role`.
+Omit `name`, `provider`, `base_url`, and `api_key` to inherit `MODEL_NAME`,
+`MODEL_PROVIDER`, `BASE_URL`, and `API_KEY` from the backend environment.
+Empty or null fields also inherit. Set any field explicitly to override just
+that setting for one agent, for example `name: gpt-4o`.
 The UI labels `role` as **System Prompt**.
 
 Keep credentials in `.env`. Variable resolution uses root-level `vars` first,
 then environment variables, then values loaded from `.env`.
 Recreate the backend container after changing its environment.
+When changing an agent to a different service, configure a matching endpoint,
+model, and API key as well. See [global model setup](../../SETUP.md#global-agent-settings).
 
 ## Connecting the team
 

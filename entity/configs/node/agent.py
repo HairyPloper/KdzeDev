@@ -1,6 +1,7 @@
 """Agent-specific configuration dataclasses."""
 
 from dataclasses import dataclass, field, replace
+import os
 from typing import Any, Dict, Iterable, List, Mapping, Sequence
 
 try:  # pragma: no cover - Python < 3.11 lacks BaseExceptionGroup
@@ -21,7 +22,6 @@ from entity.configs.base import (
     optional_dict,
     optional_str,
     require_mapping,
-    require_str,
     extend_path,
 )
 from .memory import MemoryAttachmentConfig
@@ -319,6 +319,16 @@ class AgentRetryConfig(BaseConfig):
             stack.extend(linked)
 
 
+def _agent_setting(mapping: Mapping[str, Any], key: str, env_name: str,
+                   path: str, fallback: str | None = None) -> str | None:
+    """Resolve each setting independently; blank UI fields inherit at load time."""
+    value = optional_str(mapping, key, path)
+    if value is not None and value.strip():
+        return value.strip()
+    value = os.environ.get(env_name, fallback)
+    return value.strip() if value else None
+
+
 @dataclass
 class AgentConfig(BaseConfig):
     provider: str
@@ -341,16 +351,16 @@ class AgentConfig(BaseConfig):
     @classmethod
     def from_dict(cls, data: Mapping[str, Any], *, path: str) -> "AgentConfig":
         mapping = require_mapping(data, path)
-        provider = require_str(mapping, "provider", path)
-        base_url = optional_str(mapping, "base_url", path)
-        name_value = mapping.get("name")
-        if isinstance(name_value, str) and name_value.strip():
-            model_name = name_value.strip()
-        else:
-            raise ConfigError("model.name must be a non-empty string", extend_path(path, "name"))
+        provider = _agent_setting(mapping, "provider", "MODEL_PROVIDER", path, "openai")
+        model_name = _agent_setting(mapping, "name", "MODEL_NAME", path, "gpt-4o")
+        if not provider:
+            raise ConfigError("Set provider locally or set a non-empty MODEL_PROVIDER", extend_path(path, "provider"))
+        if not model_name:
+            raise ConfigError("Set name locally or set a non-empty MODEL_NAME", extend_path(path, "name"))
+        base_url = _agent_setting(mapping, "base_url", "BASE_URL", path)
 
         role = optional_str(mapping, "role", path)
-        api_key = optional_str(mapping, "api_key", path)
+        api_key = _agent_setting(mapping, "api_key", "API_KEY", path)
         params = optional_dict(mapping, "params", path) or {}
         raw_input_mode = optional_str(mapping, "input_mode", path)
         input_mode = AgentInputMode.MESSAGES
@@ -416,8 +426,8 @@ class AgentConfig(BaseConfig):
             name="name",
             display_name="Model Name",
             type_hint="str",
-            required=True,
-            description="Specific model name e.g. gpt-4o",
+            required=False,
+            description="Leave empty to inherit MODEL_NAME from the backend environment (fallback gpt-4o), or enter a model for this agent only.",
         ),
         "role": ConfigFieldSpec(
             name="role",
@@ -430,27 +440,24 @@ class AgentConfig(BaseConfig):
             name="provider",
             display_name="Model Provider",
             type_hint="str",
-            required=True,
-            description="Name of a registered provider (openai, gemini, etc.) that selects the underlying client adapter.",
-            default="openai",
+            required=False,
+            description="Leave empty to inherit MODEL_PROVIDER (fallback openai), or select an adapter for this agent. OpenAI-compatible services also use openai with their own endpoint and model.",
         ),
         "base_url": ConfigFieldSpec(
             name="base_url",
             display_name="Base URL",
             type_hint="str",
             required=False,
-            description="Override the provider's default endpoint; leave empty to use the built-in base URL.",
+            description="Leave empty to inherit BASE_URL from the backend environment, or set an endpoint for this agent only. If neither is set, use the adapter's built-in endpoint.",
             advance=True,
-            default="${BASE_URL}",
         ),
         "api_key": ConfigFieldSpec(
             name="api_key",
             display_name="API Key",
             type_hint="str",
             required=False,
-            description="Credential consumed by the provider client; reference an env var such as ${API_KEY} that matches the selected provider.",
+            description="Leave empty to inherit API_KEY from the backend environment. For a different service, reference its own credential with a placeholder such as ${OTHER_API_KEY}.",
             advance=True,
-            default="${API_KEY}",
         ),
         "params": ConfigFieldSpec(
             name="params",
@@ -546,15 +553,10 @@ class AgentConfig(BaseConfig):
                 )
             )
 
-        default_value = provider_spec.default
-        if not default_value or default_value not in provider_names:
-            default_value = AgentConfig._preferred_provider_default(provider_names)
-
         return replace(
             provider_spec,
             enum=provider_names,
             enum_options=enum_options,
-            default=default_value,
         )
 
     @staticmethod
