@@ -19,5 +19,7 @@ export function needsKdzeBusinessBrief(workflowFile, prompt, attachmentCount = 0
   }
 
   const text = String(prompt || '').trim()
-  return /^(start|run|go|begin|launch)(?:\s+(?:it|workflow|the workflow))?[.!]?$/i.test(text)
+  const isCommandOnly = /^(start|run|go|begin|launch)(?:\s+(?:it|workflow|the workflow))?[.!]?$/i.test(text)
+  const hasPlaceholder = /[\[<]\s*(?:amount|currency|budget|number|insert\b|your\b)[^\]>]*[\]>]/i.test(text)
+  return isCommandOnly || hasPlaceholder
 }

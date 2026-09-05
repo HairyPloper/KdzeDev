@@ -1,65 +1,69 @@
 # KdzeDev
 
-A personal workspace for building and running teams of AI agents in a visual editor.
+KdzeDev is a self-hosted workspace for designing and running teams of AI
+agents. Workflows are built as visual graphs: each node has a focused task, and
+connections pass results between agents. Workflow definitions remain readable
+YAML files, while Docker provides a repeatable local environment.
+
+The project is intended as a personal foundation that can be simplified,
+extended, and managed independently. A model provider can be configured once
+for the whole application and overridden for individual agents when needed.
 
 ## Start with Docker
 
-1. Install Docker Desktop and use Linux containers.
-2. Copy `.env.example` to `.env` if you do not already have one.
-3. Set `API_KEY` in `.env` to your OpenAI API key.
-4. From the repository folder, run:
+Install Docker Desktop and use Linux containers. Then copy the example
+configuration:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Open `.env` and configure these values for your model provider:
+
+- `MODEL_PROVIDER`
+- `MODEL_NAME`
+- `BASE_URL`
+- `API_KEY`
+
+Build and start the application from the repository folder:
 
 ```powershell
 docker compose up -d --build
 ```
 
-Open [KdzeDev](http://localhost:5173). API credentials are needed when you run agents.
-See [setup and maintenance](docs/SETUP.md) for restart commands and storage details.
+Open [KdzeDev](http://localhost:5173). Provider usage, credits, and rate limits
+are controlled by the account associated with the configured API key.
 
-## Business idea team
+For restart commands, configuration examples, and maintenance instructions,
+see [Setup and maintenance](docs/SETUP.md).
 
-Open `Kdze_new_business_idea` in the editor. The team helps a group of friends
-find a business idea for their planned company, **Kdze**. Agents inherit the
-model settings in `.env`; the example defaults use `gpt-4o`:
+## Repository layout
 
-| Agent | Task |
+| Path | Purpose |
 | --- | --- |
-| Viki | Summarize the founders' goals and constraints |
-| Anton | Find customer problems |
-| Makarony | Suggest business ideas |
-| Toške | Identify potential customers |
-| Pako | Check practicality and shortlist ideas |
-| Koki | Plan the simplest backend or operational setup |
-| Pepi | Outline frontend, UI/UX, and customer touchpoints |
-| Šomi | Clarify the offer and identify language needs |
-| Ceki | Review pilot plans, define QA checks, and request targeted revisions |
-| Pijeki | Estimate costs and revenue |
-| Dinča | Challenge assumptions and identify risks |
-| Dado | Review legal questions and requirements for each pilot |
-| Miki | Recommend an idea and a seven-day validation plan |
+| `frontend/` | Visual workflow editor and launch interface |
+| `yaml_instance/` | Saved workflow definitions |
+| `functions/` | Runtime functions and edge processors |
+| `data/vuegraphs.db` | Local application data used by Docker |
+| `WareHouse/` | Generated run artifacts |
+| `logs/` | Runtime logs |
 
-The disconnected `gospodarice` node is a playful wives' club cameo. It is
-outside the working team's sequence and stays inactive during normal runs.
+Application data stays on the local machine through Docker-mounted folders.
+Keep `.env` private because it contains API credentials.
 
-At launch, describe the real founders, their skills and interests, location,
-available time, resources, shared test budget, and currency. A bare command such
-as `start` is rejected because it would force the team to invent its constraints.
-The team passes findings forward in the order above. Ceki's QA gate can return
-one targeted revision through Koki, Pepi, and Šomi; then the workflow continues.
-Pijeki, Dinča, and Dado give advisory cost, risk, and legal reviews without
-restarting the graph. A normal run makes 13 model calls, or 17 if the QA return
-is used, excluding provider retries. Recommendations remain hypotheses to test
-with real customers; this workflow has no web research tools configured.
+## Included example
 
-Edit the team in the UI or in
+`Kdze_new_business_idea` is included as an example of a multi-role workflow.
+It can be opened, edited, and launched from the UI; its definition is stored in
 [yaml_instance/Kdze_new_business_idea.yaml](yaml_instance/Kdze_new_business_idea.yaml).
 
-## Guides
+## Documentation
 
-- The **Tutorial** page in the app explains nodes, connections, and launching.
-- **Export Chat / PDF** in Launch opens the full expanded conversation for printing or saving as PDF.
-- [English reference](docs/user_guide/en/index.md) covers the editor and runtime.
+- The in-app **Tutorial** introduces nodes, connections, and workflow runs.
+- [English user guide](docs/user_guide/en/index.md) documents the editor and runtime.
+- [Workflow authoring](docs/user_guide/en/workflow_authoring.md) explains YAML structure and execution behavior.
+- [Setup and maintenance](docs/SETUP.md) covers Docker, storage, and configuration.
 
 ## License
 
-[Apache License 2.0](LICENSE).
+[Apache License 2.0](LICENSE)

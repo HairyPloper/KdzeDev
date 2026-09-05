@@ -121,13 +121,10 @@ Existing explicit values stay local overrides.
 including nested cycles. A node override does not override the engine cap.
 If a counter needs more than 100 triggers, increase the engine cap as needed.
 Neither setting limits the number of agents or repeats a sequential workflow.
-The business idea team has one QA gate configured in
-`functions/edge_processor/kdze_review.py`. It allows one targeted return through
-Koki, Pepi, Šomi, and Ceki. Pijeki, Dinča, and Dado are advisory and never send
-the graph backward. The workflow therefore makes 13 model calls normally and
-17 when the QA revision is used, excluding provider retries. Leave the engine
-cap at 100; increasing it does not increase the QA allowance. A lower engine
-cap can stop the workflow before the final handoff.
+The business idea team is a forward-only graph with no revision loops. It makes
+13 model calls, excluding provider retries. Leave the engine cap at 100; raising
+it does not make agents repeat. A lower engine cap can stop the workflow before
+the final handoff.
 
 After editing `.env`, apply it with
 `docker compose up -d --force-recreate backend`. Blank, zero, negative, and

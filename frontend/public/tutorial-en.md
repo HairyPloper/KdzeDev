@@ -10,8 +10,6 @@ The goal is to help a group of friends find a business idea for their planned co
 
 **Viki → Anton → Makarony → Toške → Pako → Koki → Pepi → Šomi → Ceki → Pijeki → Dinča → Dado → Miki**
 
-One automatic QA review gate sits after Ceki.
-
 Viki writes the founder brief. Anton finds problems. Makarony suggests ideas.
 Toške identifies customers. Pako checks feasibility. Koki plans the simplest
 technical setup. Pepi outlines the customer experience. Šomi clarifies the
@@ -19,18 +17,11 @@ offer and language needs. Ceki defines quality checks. Pijeki estimates costs.
 Dinča challenges assumptions. Dado flags legal questions for the pilots.
 Miki chooses a candidate and proposes a seven-day test that accounts for those questions.
 
-The QA gate can return one targeted revision:
-
-| Reviewer | Sends back to | Reason |
-| --- | --- | --- |
-| Ceki | Koki | Blocking planning issues; then Pepi and Šomi revise their parts |
-
-The QA chain allows **one return for the whole run**. READY continues immediately;
-a second non-ready result forwards the unresolved concerns. Pijeki, Dinča, and
-Dado then add cost, risk, and legal advice without sending work backward. The
-gate uses no model calls. The workflow uses 13 model calls normally or 17 with
-the revision, excluding provider retries. Planning readiness still requires
-real-world and legal checks.
+The workflow is forward-only: every active teammate runs once. Viki's founder
+brief and Pako's two selected ideas also travel on context-only connections to
+later reviewers, so summaries cannot silently rename an idea. The workflow uses
+13 model calls excluding provider retries. QA plans still require real testing,
+and legal questions still require external verification.
 
 The separate **gospodarice** node is a fun wives' club cameo with encouragement
 and friendly teasing. It has no connections and is not a start node, so it
@@ -38,8 +29,9 @@ does not run or use API credits during the team's normal workflow.
 
 At launch, describe the real members and skills, interests, available hours,
 location and customer market, resources, shared test budget, and currency.
-Command-only prompts such as `start` are rejected; attach a brief or type these
-details. Unknowns stay unknown. The team has no research tools configured, so
+Command-only prompts and unfilled text such as `[amount and currency]` are
+rejected; attach a completed brief or type the details. Unknowns stay unknown.
+The team has no research tools configured, so
 treat customer demand and financial estimates as hypotheses.
 
 ## 2. Create nodes

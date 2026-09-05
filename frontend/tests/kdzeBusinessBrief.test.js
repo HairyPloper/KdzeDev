@@ -18,6 +18,20 @@ test('rejects command-only launch prompts for the Kdze workflow', () => {
   }
 })
 
+test('rejects an unfilled founder-brief placeholder', () => {
+  assert.equal(
+    needsKdzeBusinessBrief(
+      'Kdze_new_business_idea.yaml',
+      'We are in Serbia. Our shared startup budget is [amount and currency].'
+    ),
+    true
+  )
+  assert.equal(
+    needsKdzeBusinessBrief('Kdze_new_business_idea.yaml', 'Budget: <your budget>'),
+    true
+  )
+})
+
 test('allows a real brief, an attachment, and other workflows', () => {
   assert.equal(
     needsKdzeBusinessBrief('Kdze_new_business_idea.yaml', 'We are four friends with a €1,000 budget.'),

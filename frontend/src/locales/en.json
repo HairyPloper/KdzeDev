@@ -175,7 +175,7 @@
     "alert_ws_error": "WebSocket connection error!",
     "alert_missing_session": "Missing session information from server.",
     "alert_enter_prompt": "Please enter task prompt or upload files.",
-    "alert_kdze_brief_required": "A command such as ‘start’ does not give the team enough real information. Enter a founder brief or attach one:",
+    "alert_kdze_brief_required": "The founder brief is incomplete. Replace placeholders such as [amount and currency], or attach a completed brief:",
     "alert_ws_not_ready": "WebSocket connection is not ready yet.",
     "alert_failed_launch": "Failed to launch workflow",
     "unknown_error": "Unknown error",
