@@ -17,7 +17,6 @@ RELOAD_SOURCE_DIRS = [
     "check",
     "entity",
     "functions",
-    "mcp_example",
     "runtime",
     "schema_registry",
     "server",

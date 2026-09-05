@@ -7,7 +7,7 @@ This landing page helps operators, workflow authors, and extension developers fi
 | Topic | Highlights |
 | --- | --- |
 | [Web UI Quick Start](web_ui_guide.md) | Frontend interface operations, workflow execution, human review, troubleshooting. |
-| [Workflow Authoring](workflow_authoring.md) | YAML structure, node types, provider/edge conditions, template export, CLI execution. |
+| [Workflow Authoring](workflow_authoring.md) | YAML structure, node types, provider/edge conditions, validation and launching. |
 | [Graph Execution Logic](execution_logic.md) | DAG/cyclic graph execution, Tarjan cycle detection, super node construction, recursive cycle execution. |
 | [Dynamic Parallel Execution](dynamic_execution.md) | Map/Tree modes, split strategies, parallel processing and hierarchical reduction. |
 | [Memory Module](modules/memory.md) | Memory list architecture, built-in `simple`/`file`/`blackboard` behaviors, embedding config, troubleshooting. |
@@ -25,7 +25,7 @@ This landing page helps operators, workflow authors, and extension developers fi
 - **Run asset management**: Every execution creates an isolated session; attachments, Python workspace, context snapshots, and summary outputs are downloadable for later review.
 
 ## 3. Architecture & Execution Flow
-1. **Entry**: Web UI and CLI call the FastAPI server exposed via `server_main.py` (e.g., `/api/workflow/execute`).
+1. **Entry**: The Web UI calls the FastAPI server exposed via `server_main.py` (e.g., `/api/workflow/execute`).
 2. **Validation/queueing**: `WorkflowRunService` validates YAML, creates a session, prepares `code_workspace/attachments/`, then hands the DAG to the scheduler in `workflow/`.
 3. **Execution**: Node executors resolve dependencies, propagate context, call tools, and retrieve memories; `MemoryManager`, `ToolingConfig`, and `ThinkingManager` trigger inside agent nodes as needed.
 4. **Observability**: WebSocket pushes states, logs, and artifact events; JSON logs stay in `logs/`, and `WareHouse/` stores run assets.

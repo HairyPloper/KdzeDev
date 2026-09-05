@@ -57,36 +57,14 @@ nodes:
 ```
 KdzeDev keeps the process alive and relays MCP frames over stdio.
 
-## 4. FastMCP sample server
-`mcp_example/mcp_server.py`:
-```python
-from fastmcp import FastMCP
-import random
-
-mcp = FastMCP("Company Simple MCP Server", debug=True)
-
-@mcp.tool
-def rand_num(a: int, b: int) -> int:
-    return random.randint(a, b)
-
-if __name__ == "__main__":
-    mcp.run()
-```
-Launch:
-```bash
-uv run fastmcp run mcp_example/mcp_server.py --transport streamable-http --port 8010
-```
-- Remote mode: set `server` to `http://127.0.0.1:8010/mcp`.
-- Local mode: run the script with `transport=stdio` and point `command` to that invocation.
-
-## 5. Security & operations
+## 4. Security & operations
 - **Network exposure**: Remote mode should sit behind HTTPS + ACL/API keys. Local mode still has access to the host filesystem, so keep the script sandboxed.
 - **Resource cleanup**: Local mode processes are terminated by KdzeDev; make sure they gracefully handle SIGTERM/SIGKILL.
 - **Logs**: Emit a clear readiness line that matches `wait_for_log` to debug startup issues.
 - **Auth**: Remote mode handles tokens via `headers`; Local mode can receive secrets via `env` (never commit them).
 - **Multi-session**: If the MCP server is single-tenant, cap concurrency (e.g., `max_concurrency=1`) and share the same YAML config.
 
-## 6. Debugging checklist
+## 5. Debugging checklist
 1. Remote: ping the HTTP endpoint via curl or `fastmcp client`. Local: run the binary manually and confirm the readiness log.
 2. Start KdzeDev (optionally with `--reload`) and observe backend logs for tool discovery.
 3. When calls fail, inspect the Web UI tool traces or the structured logs under `logs/`.

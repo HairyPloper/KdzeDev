@@ -38,7 +38,6 @@ Tools for file and directory management within `code_workspace/`.
 | `move_path` | Move a file or directory |
 | `search_in_files` | Search for text or regex patterns in workspace files |
 
-**Example YAML**: [KdzeDev_v1.yaml](../../../../../yaml_instance/KdzeDev_v1.yaml), [file_tool_use_case.yaml](../../../../../yaml_instance/file_tool_use_case.yaml)
 
 ---
 
@@ -52,7 +51,6 @@ Manage Python environments and dependencies using uv.
 | `init_python_env` | Initialize Python environment (uv lock + venv) |
 | `uv_run` | Execute uv run in workspace to run modules or scripts |
 
-**Example YAML**: [KdzeDev_v1.yaml](../../../../../yaml_instance/KdzeDev_v1.yaml)
 
 ---
 
@@ -83,7 +81,6 @@ Search result management and report generation tools for automated research work
 | `report_del_chapter` | Delete a chapter |
 | `report_export_pdf` | Export report to PDF |
 
-**Example YAML**: [deep_research_v1.yaml](../../../../../yaml_instance/deep_research_v1.yaml)
 
 ---
 
@@ -100,7 +97,6 @@ Web search and webpage content retrieval.
 - `SERPER_DEV_API_KEY`: Serper.dev API key
 - `JINA_API_KEY`: Jina API key (optional, auto rate-limited to 20 RPM without key)
 
-**Example YAML**: [deep_research_v1.yaml](../../../../../yaml_instance/deep_research_v1.yaml)
 
 ---
 

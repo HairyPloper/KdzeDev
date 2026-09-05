@@ -68,7 +68,7 @@ nodes:
 ## 5. Extension Flow
 1. Add your function under `functions/function_calling/`.
 2. Supply type hints + `ParamMeta`; set `auto_fill: false` with custom `parameters` if you need manual JSON Schema.
-3. If the function needs extra packages, declare them in `pyproject.toml`/`requirements.txt`, or use the bundled `install_python_packages` sparingly.
+3. If the function needs extra packages, declare them in `pyproject.toml`, update `uv.lock`, and rebuild the backend image.
 4. Run `python -m tools.export_design_template ...` so the frontend picks up new enums.
 
 ## 6. Debugging

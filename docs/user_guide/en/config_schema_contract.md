@@ -88,19 +88,13 @@ Responses:
 - Use `value` for discriminator-based children (node `type`, tooling `type`, etc.).
 - Non-navigable targets raise `field '<name>' on <node> is not navigable`.
 
-## 3. CLI Helper
-```bash
-python run.py --inspect-schema --schema-breadcrumbs '[{"node":"DesignConfig","field":"graph"}]'
-```
-The CLI prints the same JSON as `/schema`, which is useful while editing `FIELD_SPECS` or debugging registries before exporting templates.
-
-## 4. Frontend Pattern
+## 3. Frontend Pattern
 1. Fetch base schema with `[{node: 'DesignConfig', field: 'graph'}]` to render the workflow form.
 2. When users open nested modals (node config, tooling config, etc.), append breadcrumbs describing the path and refetch.
 3. Cache responses using `cacheKey` + breadcrumbs.
 4. Before saving, call `/schema/validate` to surface `error` + `path` inline.
 
-## 5. Error Reference
+## 4. Error Reference
 | HTTP Code | Situation | Detail payload |
 | --- | --- | --- |
 | 400 | YAML parse failure | `{ "message": "invalid_yaml", "error": "..." }` |

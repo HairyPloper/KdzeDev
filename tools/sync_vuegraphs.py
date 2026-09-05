@@ -11,9 +11,7 @@ Purpose:
 - Useful for development and deployment workflows
 
 Usage:
-    python tools/sync_vuegraphs.py
-    # or via Makefile:
-    make sync
+    docker compose exec backend python -m tools.sync_vuegraphs
 """
 
 import os
