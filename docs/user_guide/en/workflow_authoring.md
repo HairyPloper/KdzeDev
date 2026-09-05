@@ -30,7 +30,7 @@ Recreate the backend container after changing its environment.
 
 ## Connecting the team
 
-The current order is Viki → Anton → Makarony → Toške → Pako → Pijeki → Dinča → Dado → Miki.
+The current order is Viki → Anton → Makarony → Toške → Pako → Koki → Pepi → Šomi → Ceki → Pijeki → Dinča → Dado → Miki.
 Viki is the start node; Miki is the end node.
 
 Each connection has `from`, `to`, `trigger: true`, and `carry_data: true`.

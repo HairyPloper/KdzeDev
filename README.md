@@ -18,7 +18,8 @@ See [setup and maintenance](docs/SETUP.md) for restart commands and storage deta
 
 ## Business idea team
 
-Open `Kdze_new_business_idea` in the editor. The team uses `gpt-4o`:
+Open `Kdze_new_business_idea` in the editor. The team helps a group of friends
+find a business idea for their planned company, **Kdze**, and uses `gpt-4o`:
 
 | Agent | Task |
 | --- | --- |
@@ -27,6 +28,10 @@ Open `Kdze_new_business_idea` in the editor. The team uses `gpt-4o`:
 | Makarony | Suggest business ideas |
 | Toške | Identify potential customers |
 | Pako | Check practicality and shortlist ideas |
+| Koki | Plan the simplest backend or operational setup |
+| Pepi | Outline frontend, UI/UX, and customer touchpoints |
+| Šomi | Clarify the offer and identify language needs |
+| Ceki | Define QA checks for the pilot |
 | Pijeki | Estimate costs and revenue |
 | Dinča | Challenge assumptions and identify risks |
 | Dado | Review legal questions and requirements for each pilot |

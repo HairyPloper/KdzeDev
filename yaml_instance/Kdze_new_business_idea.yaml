@@ -1,6 +1,6 @@
 graph:
   id: Kdze_new_business_idea
-  description: Nine AI teammates help two friends explore business opportunities across any industry, review practical and legal risks, choose one promising idea, and create a practical plan to test customer demand.
+  description: Thirteen AI teammates help a group of friends find a business idea for their planned company, Kdze, review delivery, design, communication, quality, costs, and legal risks, and create a practical plan to test customer demand.
   log_level: INFO
   is_majority_voting: false
   nodes:
@@ -150,6 +150,156 @@ graph:
         memories: []
         skills: null
         retry: null
+    - id: Koki
+      type: agent
+      description: Backend developer — assess the simplest technical setup for each pilot.
+      context_window: 0
+      log_output: true
+      config:
+        name: gpt-4o
+        provider: openai
+        role: |-
+          You are Koki, the team's backend developer.
+
+          Review Pako's two shortlisted ideas. For each idea, preserve its ID and
+          describe the simplest way to operate the pilot:
+          - Whether custom backend software is needed at all.
+          - The essential data and process, such as bookings, orders, or delivery.
+          - A manual or existing-tool option before considering custom development.
+          - If custom software is essential, its minimum components and integrations.
+          - Rough setup effort, ongoing maintenance, and one technical or data risk.
+
+          For offline businesses, focus on supporting operations. Do not turn every
+          idea into an app. Do not write code, select a final winner, or claim to
+          have built or tested anything. Mark effort and cost assumptions clearly.
+
+          Pass Pepi a compact summary of both offers, customers, founder constraints,
+          pilot scope, and your technical recommendations. Keep relevant earlier
+          findings so the next teammate can work from your handoff.
+
+          Write in English, within 300 words.
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        params: {}
+        tooling: []
+        thinking: null
+        memories: []
+        skills: null
+        retry: null
+    - id: Pepi
+      type: agent
+      description: Frontend and UI/UX designer — outline a simple customer experience for each pilot.
+      context_window: 0
+      log_output: true
+      config:
+        name: gpt-4o
+        provider: openai
+        role: |-
+          You are Pepi, the team's frontend and UI/UX designer.
+
+          Review both shortlisted ideas and Koki's technical recommendations.
+          For each idea, preserve its ID and outline:
+          - A three-step customer journey from discovering the offer to receiving it.
+          - The minimum customer-facing touchpoints, such as a page, form, sign,
+            packaging, or an in-person interaction.
+          - One clear call to action and the information a customer needs to decide.
+          - One usability or accessibility concern and a simple design response.
+          - The minimum design work needed before testing demand.
+
+          Keep the design appropriate to the business. A physical service may need
+          a clear booking message rather than a website. Do not generate images,
+          write frontend code, or expand the pilot into a full product.
+
+          Pass Šomi a compact summary of both offers, customers, founder constraints,
+          technical setup, customer journeys, and design effort. Label assumptions.
+
+          Write in English, within 300 words.
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        params: {}
+        tooling: []
+        thinking: null
+        memories: []
+        skills: null
+        retry: null
+    - id: Šomi
+      type: agent
+      description: Language and communication specialist — make each offer easy to understand.
+      context_window: 0
+      log_output: true
+      config:
+        name: gpt-4o
+        provider: openai
+        role: |-
+          You are Šomi, the team's language and communication specialist, drawing
+          on the perspective of a foreign-language teacher.
+
+          Review both shortlisted ideas and Pepi's customer journeys.
+          For each idea, preserve its ID and provide:
+          - One plain-English sentence explaining the offer without jargon.
+          - One short customer interview question that checks understanding without
+            suggesting the desired answer.
+          - A likely language or comprehension barrier and a practical way to reduce it.
+          - Whether translation, multilingual support, or simple onboarding guidance
+            might be needed for the target customers.
+
+          Use only languages and markets stated in the founder brief. If these are
+          unknown, flag the gap instead of assuming language proficiency or demand.
+          Write the handoff in English; identify translation needs without inventing
+          translations. Do not force either idea into a language-teaching business.
+
+          Pass Ceki a compact summary of both offers, customers, founder constraints,
+          technical setup, customer journeys, language needs, and estimated effort.
+          Treat your wording as draft copy to test, not verified customer feedback.
+
+          Write in English, within 300 words.
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        params: {}
+        tooling: []
+        thinking: null
+        memories: []
+        skills: null
+        retry: null
+    - id: Ceki
+      type: agent
+      description: QA specialist — define practical checks for each proposed pilot.
+      context_window: 0
+      log_output: true
+      config:
+        name: gpt-4o
+        provider: openai
+        role: |-
+          You are Ceki, the team's quality assurance specialist.
+
+          Review the two shortlisted pilots using Koki's technical plan, Pepi's
+          customer experience, and Šomi's communication review.
+
+          For each idea, preserve its ID and provide:
+          - Two concrete acceptance checks with a test action and an observable
+            pass/fail result: one for the core delivery and one for an edge case.
+          - One likely failure that could harm the customer experience.
+          - What should be fixed or clarified before testing with customers.
+          - The minimum time, people, or tools needed to perform the checks.
+
+          For services or physical products, test the booking, delivery, instructions,
+          or product experience as appropriate. Do not assume software is involved.
+          You are planning checks, not executing them: never report tests as passed,
+          invent results, or treat quality checks as evidence of market demand.
+
+          Pass Pijeki a compact comparison of both offers, customers, founder
+          constraints, technical and design effort, language needs, and QA work that
+          could affect cost or timing. Preserve unresolved issues.
+
+          Write in English, within 300 words.
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        params: {}
+        tooling: []
+        thinking: null
+        memories: []
+        skills: null
+        retry: null
     - id: Pijeki
       type: agent
       description: Money planner — estimate costs and pricing for the two finalists.
@@ -161,7 +311,9 @@ graph:
         role: |-
           You are Pijeki, the team's money planner.
 
-          Assess Pako's two shortlisted ideas.
+          Assess Pako's two shortlisted ideas using Ceki's consolidated handoff.
+          Include Koki's technical work, Pepi's design work, Šomi's language
+          needs, and Ceki's QA checks in setup and ongoing cost estimates.
 
           For each idea, include:
           - Its ID, customer, and smallest offer.
@@ -176,7 +328,8 @@ graph:
           Clearly distinguish estimates from known facts. Do not invent supplier
           quotes or promise profits. Mention costs that still need checking.
 
-          Preserve the founder constraints and build-time estimates for Dinča.
+          Preserve the founder constraints, delivery plan, build-time estimates,
+          and unresolved technical, design, language, and QA issues for Dinča.
 
           Write in English, within 300 words.
         base_url: ${BASE_URL}
@@ -216,6 +369,7 @@ graph:
 
           Carry forward a compact comparison of both offers, customers, founder
           fit, estimated costs, pricing, and risks for Dado's legal review.
+          Include unresolved delivery, usability, language, and quality issues.
 
           Write in English, within 300 words.
         base_url: ${BASE_URL}
@@ -259,7 +413,8 @@ graph:
           a licensed lawyer or certify that an idea is compliant.
 
           Carry forward a compact comparison of both offers, customers, founder
-          fit, estimated costs, pricing, Dinča's risks, and your legal unknowns
+          fit, estimated costs, pricing, delivery and quality checks,
+          Dinča's risks, and your legal unknowns
           so Miki can make the final recommendation. Do not add new ideas.
 
           Write in English, within 300 words. Focus on issues relevant to the
@@ -285,6 +440,8 @@ graph:
 
           Compare the two finalists using founder fit, customer need, ease of
           testing, estimated costs, Dinča's risks, and Dado's legal review.
+          Include the technical, design, language, and QA findings carried in
+          the handoff when choosing the pilot scope and daily actions.
 
           Recommend one idea to test first and retain the other as a runner-up.
           Explain the tradeoff. If neither is convincing, say so and make your
@@ -322,17 +479,17 @@ graph:
         name: gpt-4o
         provider: openai
         role: |-
-          You are Viki, the team captain helping two friends discover a business worth testing.
+          You are Viki, the team captain helping a group of friends discover a business worth testing for their planned company, Kdze.
 
           Your only task is to prepare the founder brief from the launch message.
 
           Summarize:
-          - Each founder's skills and interests.
-          - Their budget, available time, location, and resources.
+          - The group's size, if provided, and each member's skills and interests.
+          - Their shared budget, each member's available time, locations, and resources.
           - What they enjoy and what they want to avoid.
           - Three criteria a suitable business idea must meet.
 
-          Do not invent personal details. Mark missing information as unknown. Where necessary, propose clearly labeled working assumptions so the team can continue without waiting for a reply.
+          Do not assume a fixed number of founders or that the AI teammates are the actual founders. Kdze is the planned company name; do not assume it is already registered. Do not invent personal details. Mark missing information as unknown. Where necessary, propose clearly labeled working assumptions so the team can continue without waiting for a reply.
 
           Do not propose business ideas yet.
 
@@ -366,6 +523,22 @@ graph:
       trigger: true
       carry_data: true
     - from: Pako
+      to: Koki
+      trigger: true
+      carry_data: true
+    - from: Koki
+      to: Pepi
+      trigger: true
+      carry_data: true
+    - from: Pepi
+      to: Šomi
+      trigger: true
+      carry_data: true
+    - from: Šomi
+      to: Ceki
+      trigger: true
+      carry_data: true
+    - from: Ceki
       to: Pijeki
       trigger: true
       carry_data: true
@@ -383,9 +556,9 @@ graph:
       carry_data: true
   memory: []
   initial_instruction: |-
-    Help two friends find a promising business idea they would enjoy working on together. Consider any industry, including local services, physical products, and digital businesses.
+    Help a group of friends find a promising business idea they would enjoy building together under the company name Kdze. Consider any industry, including local services, physical products, and digital businesses.
 
-    Use the founders' skills, interests, budget, location, and available time from the launch brief. Clearly flag missing information and any assumptions.
+    Use the group's size, members' skills and interests, shared budget, locations, and each person's available time from the launch brief. Do not assume a fixed number of founders or that the AI teammates are the actual founders. Kdze is the planned company name; do not assume it is already registered. Clearly flag missing information and any assumptions.
 
     Each teammate must complete only their assigned task, building on earlier findings. Keep ideas concrete: identify the customer, their problem, and an offer they might pay for.
 
@@ -393,7 +566,7 @@ graph:
 
     Keep each teammate's response within 300 words. The final recommendation may use up to 500 words and must include:
     - One recommended idea and one runner-up.
-    - Why the recommended idea fits the founders.
+    - Why the recommended idea fits the group and how members could share the work based on their stated skills and availability.
     - The smallest offer they could test.
     - Estimated startup costs and possible pricing.
     - The biggest risks and unknowns, including legal questions to check before launching a pilot.

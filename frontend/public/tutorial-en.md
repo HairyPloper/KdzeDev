@@ -6,10 +6,14 @@ Build your team in the workflow editor, then open Launch to run it.
 
 Select **Kdze_new_business_idea** from the workflow list.
 
-**Viki → Anton → Makarony → Toške → Pako → Pijeki → Dinča → Dado → Miki**
+The goal is to help a group of friends find a business idea for their planned company, **Kdze**.
+
+**Viki → Anton → Makarony → Toške → Pako → Koki → Pepi → Šomi → Ceki → Pijeki → Dinča → Dado → Miki**
 
 Viki writes the founder brief. Anton finds problems. Makarony suggests ideas.
-Toške identifies customers. Pako checks feasibility. Pijeki estimates costs.
+Toške identifies customers. Pako checks feasibility. Koki plans the simplest
+technical setup. Pepi outlines the customer experience. Šomi clarifies the
+offer and language needs. Ceki defines quality checks. Pijeki estimates costs.
 Dinča challenges assumptions. Dado flags legal questions for the pilots.
 Miki chooses a candidate and proposes a seven-day test that accounts for those questions.
 
